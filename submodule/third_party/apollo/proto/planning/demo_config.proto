@@ -1,0 +1,127 @@
+syntax = "proto2";
+
+package smartsim.planning;
+
+message SpeedLimits {
+  message SpeedLimit {
+    required bytes lane_id = 1;
+    required double max_speed = 2;
+  }
+  repeated SpeedLimit speed_limit = 1;
+}
+
+message BareIntersectionIgnored {
+  repeated bytes overlap_id = 1;
+}
+
+message BareIntersectionConfig {
+  message StopPositionOffset {
+    required bytes overlap_id = 1;
+    optional double start_s_offset = 2;
+    optional double end_s_offset = 3; 
+  }
+
+  repeated StopPositionOffset stop_poisition_offsets = 1;
+}
+// add by xinran
+message ConsiderBehindLonRange{
+  message Point {
+    optional double x = 1;
+    optional double y = 2;
+  }
+  message ConsiderBehindPairs{
+    optional Point start_point = 1;
+    optional Point end_point = 2;
+  }
+  
+  repeated ConsiderBehindPairs consider_behind_pairs = 1;
+}
+
+message ConsiderNearbyObstacleRange{
+  message Point {
+    optional double x = 1;
+    optional double y = 2;
+  }
+  message ConsiderObstaclePairs{
+    optional Point start_point = 1;
+    optional Point end_point = 2;
+  }
+  
+  repeated ConsiderObstaclePairs consider_obstacle_pairs = 1;
+}
+
+message IgnoreDottedLineRange{
+  message Point {
+    optional double x = 1;
+    optional double y = 2;
+  }
+  message IgnoreDottedLinePairs{
+    optional Point start_point = 1;
+    optional Point end_point = 2;
+  }
+  
+  repeated IgnoreDottedLinePairs ignore_dotted_line_pairs = 1;
+}
+
+message CutLaneWidthRange {
+  repeated bytes lane_id = 1;
+}
+
+message BareIntersectionNeighborSignalIds {
+  message SignalId {
+    required bytes signal_id = 1;
+    required double distance = 2;
+  }
+  repeated SignalId singal_ids = 1;
+}
+
+message MergeRegions {
+  message Point {
+    optional double x = 1;
+    optional double y = 2;
+  }
+
+  message MergeRegion {
+    optional Point start_point = 1;
+    optional Point end_point = 2;
+    optional bool is_left = 3;
+  }
+
+  repeated MergeRegion regions = 1;
+}
+
+message DemoConfig {
+  optional SpeedLimits speed_limits = 1;
+  optional BareIntersectionIgnored bare_intersection_ignored = 2;
+  optional BareIntersectionConfig bare_intersection_config = 3;
+
+  // add by xinran
+  optional ConsiderBehindLonRange consider_behind_lon_range = 4;
+  optional ConsiderNearbyObstacleRange consider_nearby_obstacle_range = 5;
+  optional IgnoreDottedLineRange ignore_dotted_line_range = 6;
+  optional BareIntersectionNeighborSignalIds bare_intersection_signal_ids = 7;
+  optional CutLaneWidthRange cut_lane_width_range = 8;
+  optional MergeRegions merge_regions = 9;
+  optional JunctionIgnoreConfig junction_ignore_config = 10;
+  optional SpeedUp speed_up = 11;
+}
+
+message JunctionIgnore{
+  repeated string pass_lane_id = 1;
+  repeated string ignore_lane_id = 2;
+}
+
+message JunctionIgnoreConfig{
+  repeated JunctionIgnore junction_ignore = 1;
+}
+
+message SpeedUpSection {
+  optional double target_speed = 1;
+  repeated string lane_ids = 2;
+}
+
+message SpeedUp {
+  repeated SpeedUpSection speed_up_sections = 1;
+}
+
+

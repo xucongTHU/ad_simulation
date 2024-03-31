@@ -1,0 +1,56 @@
+syntax = "proto2";
+
+package smartsim.prediction;
+
+message MapVector {
+  repeated double element = 1;
+}
+
+message OfflinePoint {
+  optional double x = 1;
+  optional double y = 2;
+  optional double theta = 3;
+  optional double timestamp = 4;
+}
+
+message Span {
+  optional double start = 1;
+  optional double end = 2;
+}
+
+message Polyline {
+  repeated MapVector vector = 1;
+  optional double p_id_x = 2;
+  optional double p_id_y = 3;
+}
+
+message ObstaclePolyline {
+  repeated OfflinePoint point = 1;
+  optional double p_id_x = 2;
+  optional double p_id_y = 3;
+  optional double length = 4;
+  optional double width = 5;
+}
+
+message ObstaclePosition {
+  optional double x = 1;
+  optional double y = 2;
+  optional double theta = 3;
+  optional double timestamp = 4;
+}
+
+message OfflineFeature {
+  optional ObstaclePosition obstacle_position = 1;
+  optional double timestamp = 2;
+  optional int32 id = 3;
+  optional string lane_label = 4;
+  optional double prediction_time = 5;
+
+  optional ObstaclePolyline target_history_positions = 6;
+  repeated ObstaclePolyline other_history_positions = 7;
+  repeated Polyline map_polylines = 8;
+  repeated Span polyline_spans = 9;
+
+  optional ObstaclePolyline target_prediction_positions = 10;
+  repeated bool labels_is_valid = 11;
+}

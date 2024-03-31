@@ -1,0 +1,680 @@
+syntax = "proto2";
+
+package smartsim.drivers;
+
+message Cds1_3ac {
+// Report Message
+  enum Cds1_steeringtakeoverstType {
+    CDS1_STEERINGTAKEOVERST_INACTIVE = 0;
+    CDS1_STEERINGTAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds1_steeringfailurestType {
+    CDS1_STEERINGFAILUREST_NO_FAIL = 0;
+    CDS1_STEERINGFAILUREST_EPS_FAIL = 1;
+    CDS1_STEERINGFAILUREST_SAS_FAIL = 2;
+    CDS1_STEERINGFAILUREST_APA_FAIL = 3;
+    CDS1_STEERINGFAILUREST_LKS_FAIL = 4;
+    CDS1_STEERINGFAILUREST_RESERVED = 5;
+//    CDS1_STEERINGFAILUREST_RESERVED = 6;
+//    CDS1_STEERINGFAILUREST_RESERVED = 7;
+  }
+  enum Cds1_steeringautocontrolstType {
+    CDS1_STEERINGAUTOCONTROLST_INACTIVE = 0;
+    CDS1_STEERINGAUTOCONTROLST_ANGLE_ACTIVE = 1;
+    CDS1_STEERINGAUTOCONTROLST_TORQUE_ACTIVE = 2;
+    CDS1_STEERINGAUTOCONTROLST_RESERVED = 3;
+  }
+  enum Cds1_enginetakeoverstType {
+    CDS1_ENGINETAKEOVERST_INACTIVE = 0;
+    CDS1_ENGINETAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds1_enginefailurestType {
+    CDS1_ENGINEFAILUREST_NO_FAIL = 0;
+    CDS1_ENGINEFAILUREST_HCU_FAIL = 1;
+    CDS1_ENGINEFAILUREST_SPEED_SENSOR_FAIL = 2;
+    CDS1_ENGINEFAILUREST_YRS_FAIL = 3;
+    CDS1_ENGINEFAILUREST_RESERVED = 4;
+//    CDS1_ENGINEFAILUREST_RESERVED = 5;
+//    CDS1_ENGINEFAILUREST_RESERVED = 6;
+//    CDS1_ENGINEFAILUREST_RESERVED = 7;
+  }
+  enum Cds1_engineautocontrolstType {
+    CDS1_ENGINEAUTOCONTROLST_INACTIVE = 0;
+    CDS1_ENGINEAUTOCONTROLST_ACTIVE = 1;
+    CDS1_ENGINEAUTOCONTROLST_RESERVED = 2;
+//    CDS1_ENGINEAUTOCONTROLST_RESERVED = 3;
+  }
+  enum Cds1_brakingtakeoverstType {
+    CDS1_BRAKINGTAKEOVERST_INACTIVE = 0;
+    CDS1_BRAKINGTAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds1_brakingfailurestType {
+    CDS1_BRAKINGFAILUREST_NO_FAIL = 0;
+    CDS1_BRAKINGFAILUREST_ESP_FAIL = 1;
+    CDS1_BRAKINGFAILUREST_SPEED_SENSOR_FAIL = 2;
+    CDS1_BRAKINGFAILUREST_YRS_FAIL = 3;
+    CDS1_BRAKINGFAILUREST_ESP_AND_HCU_FAIL = 4;
+    CDS1_BRAKINGFAILUREST_RESERVED = 5;
+//    CDS1_BRAKINGFAILUREST_RESERVED = 6;
+//    CDS1_BRAKINGFAILUREST_RESERVED = 7;
+  }
+  enum Cds1_brakingautocontrolstType {
+    CDS1_BRAKINGAUTOCONTROLST_INACTIVE = 0;
+    CDS1_BRAKINGAUTOCONTROLST_ACTIVE = 1;
+    CDS1_BRAKINGAUTOCONTROLST_RESERVED = 2;
+//    CDS1_BRAKINGAUTOCONTROLST_RESERVED = 3;
+  }
+  // This signal indicates the version of software [version] [0|655.35]
+  optional double cds1_version = 1;
+  // This signal indicates the steering is under maunal taking over. [] [0|1]
+  optional Cds1_steeringtakeoverstType cds1_steeringtakeoverst = 2;
+  // This signal indicates the steering is in fault status [] [0|7]
+  optional Cds1_steeringfailurestType cds1_steeringfailurest = 3;
+  // This signal indicates the steering is under automatical control or not. [] [0|3]
+  optional Cds1_steeringautocontrolstType cds1_steeringautocontrolst = 4;
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 cds1_livecounter = 5;
+  // This signal indicates the engine is under maunal taking over. [] [0|1]
+  optional Cds1_enginetakeoverstType cds1_enginetakeoverst = 6;
+  // This signal indicates the engine is in fault status [] [0|7]
+  optional Cds1_enginefailurestType cds1_enginefailurest = 7;
+  // This signal indicates the engine is under automatical control or not. [] [0|3]
+  optional Cds1_engineautocontrolstType cds1_engineautocontrolst = 8;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 cds1_checksum = 9;
+  // This signal indicates the braking is under maunal taking over. [] [0|1]
+  optional Cds1_brakingtakeoverstType cds1_brakingtakeoverst = 10;
+  // This signal indicates the braking is in fault status [] [0|7]
+  optional Cds1_brakingfailurestType cds1_brakingfailurest = 11;
+  // This signal indicates the braking is under automatical control or not. [] [0|3]
+  optional Cds1_brakingautocontrolstType cds1_brakingautocontrolst = 12;
+}
+
+message Eps1_3ab {
+// Report Message
+  enum Eps1_apaerrorstatusType {
+    EPS1_APAERRORSTATUS_NO_ERROR = 0;
+    EPS1_APAERRORSTATUS_ERROR = 1;
+  }
+  enum Eps1_aparequestfeedbackType {
+    EPS1_APAREQUESTFEEDBACK_DISABLE = 0;
+    EPS1_APAREQUESTFEEDBACK_ENABLE = 1;
+  }
+  enum Eps1_apaabortfeedbackType {
+    EPS1_APAABORTFEEDBACK_NO_DRIVING_INTERUPTION = 0;
+    EPS1_APAABORTFEEDBACK_RECOVERABLE_INTERRUPTION = 1;
+    EPS1_APAABORTFEEDBACK_VEHICLE_SPEED_INVALID_OR_TIMEOUT = 2;
+    EPS1_APAABORTFEEDBACK_STEERING_WHEEL_ANGLE_REQ_EXCEEDS_LIMITS = 3;
+    EPS1_APAABORTFEEDBACK_STEERING_WHEEL_ANGLE_SPEED_REQ_EXCEEDS_LIMITS = 4;
+    EPS1_APAABORTFEEDBACK_STEERING_WHEEL_ANGLE_INVALID_OR_TIMEOUT = 5;
+    EPS1_APAABORTFEEDBACK_HAD_CONTROL_SIGNAL_INVALID_OR_TIMEOUT = 6;
+    EPS1_APAABORTFEEDBACK_CAN_BUS_OFF = 7;
+    EPS1_APAABORTFEEDBACK_STEERING_WHEEL_ANGLE_SPEED_EXCEEDS_LIMITS_WHEN_IN_CONTROL = 8;
+    EPS1_APAABORTFEEDBACK_EPS_INTERNAL_FAILURE_WITH_LIMITED_STEERING_ASSISTANCE = 9;
+    EPS1_APAABORTFEEDBACK_GEAR_SIGNAL_INVALID_OR_TIMEOUT = 10;
+    EPS1_APAABORTFEEDBACK_EPS_CONTROL_REQ_RECEIVED_WHEN_IN_CONTOL = 11;
+    EPS1_APAABORTFEEDBACK_DIFFERENCE_OF_THE_TWO_NEIGHBORING_STEERING_WHEEL_ANGLE_REQ_SIGNALS_EXCEEDS_LIMITS = 12;
+    EPS1_APAABORTFEEDBACK_DIFFERENCE_OF_STEERING_WHEEL_ANGLE_REQ_AND_STEERING_WHEEL_ANGLE_EXCEEDS_LIMITS = 13;
+    EPS1_APAABORTFEEDBACK_VEHICLE_SPEED_EXCEEDS_LIMITS_WHEN_IN_CONTROL = 14;
+    EPS1_APAABORTFEEDBACK_EPS_SYSTEM_CRITICAL_FAILURE_NO_STEERING_ASSISTANCE = 15;
+    EPS1_APAABORTFEEDBACK_EPS_CONTROL_ACTIVE_RECEIVED_WITHOUT_HANDSHAKING = 16;
+    EPS1_APAABORTFEEDBACK_HANDSHAKING_TIMEOUT = 17;
+    EPS1_APAABORTFEEDBACK_DIFFERENCE_OF_THE_FIRST_STEERING_WHEEL_ANGLE_REQ_SIGNAL_AND_STEERING_WHEEL_ANGLE_EXCEEDS_LIMITS = 18;
+    EPS1_APAABORTFEEDBACK_RESERVED = 19;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 20;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 21;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 22;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 23;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 24;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 25;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 26;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 27;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 28;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 29;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 30;
+//    EPS1_APAABORTFEEDBACK_RESERVED = 31;
+  }
+  // The signal indicates the status of APA function error [] [0|1]
+  optional Eps1_apaerrorstatusType eps1_apaerrorstatus = 1;
+  // EPS APA Request Feedback [] [0|1]
+  optional Eps1_aparequestfeedbackType eps1_aparequestfeedback = 2;
+  // EPS APA Abort Feedback [] [0|31]
+  optional Eps1_apaabortfeedbackType eps1_apaabortfeedback = 3;
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 eps1_livecounter = 4;
+  // The signal indicates the torque measured by the torque sensor at the steering wheel [Nm] [-10|10]
+  optional double eps1_handsteeringtorque = 5;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 ep1_checksum = 6;
+}
+
+message Esc1_3aa {
+// Report Message
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 esc1_livecounter = 1;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 esc1_checksum = 2;
+  // This signal indicates the yaw rate data (real data; sign depends on mounting position).anticlockwise=positive, clockwise=negative [deg/s] [-100|100]
+  optional double esc1_yawrate = 3;
+  // The signal is LongitudinalAcceleration(exact value).Positive value represents  forward,  negative value represents backward. [m/s2] [-20|20]
+  optional double esc1_accelerationx = 4;
+  // The signal is Lateral Acceleration(exact value).Positive value represents right side of vehicle, negative value represents  left side of vehicle. [m/s2] [-20|20]
+  optional double esc1_accelerationy = 5;
+}
+
+message Acu1_570 {
+// Control Message
+  enum Acu1_takeoverrequestType {
+    ACU1_TAKEOVERREQUEST_NO_REQUEST = 0;
+    ACU1_TAKEOVERREQUEST_REQUEST = 1;
+  }
+  enum Acu1_standstillrequestType {
+    ACU1_STANDSTILLREQUEST_NO_REQUEST = 0;
+    ACU1_STANDSTILLREQUEST_REQUEST = 1;
+  }
+  enum Acu1_epbrequestType {
+    ACU1_EPBREQUEST_NO_REQUEST = 0;
+    ACU1_EPBREQUEST_RELEASING = 1;
+    ACU1_EPBREQUEST_LOCKING = 2;
+    ACU1_EPBREQUEST_RESERVED = 3;
+  }
+  enum Acu1_rightlightrequestType {
+    ACU1_RIGHTLIGHTREQUEST_NO_REQUEST = 0;
+    ACU1_RIGHTLIGHTREQUEST_OFF = 1;
+    ACU1_RIGHTLIGHTREQUEST_ON = 2;
+    ACU1_RIGHTLIGHTREQUEST_RESERVED = 3;
+  }
+  enum Acu1_leftlightrequestType {
+    ACU1_LEFTLIGHTREQUEST_NO_REQUEST = 0;
+    ACU1_LEFTLIGHTREQUEST_OFF = 1;
+    ACU1_LEFTLIGHTREQUEST_ON = 2;
+    ACU1_LEFTLIGHTREQUEST_RESERVED = 3;
+  }
+  enum Acu1_steeringcontrolstateType {
+    ACU1_STEERINGCONTROLSTATE_NO_REQUEST = 0;
+    ACU1_STEERINGCONTROLSTATE_ANGLE_REQUEST = 1;
+    ACU1_STEERINGCONTROLSTATE_RESERVED = 2;
+//    ACU1_STEERINGCONTROLSTATE_RESERVED = 3;
+  }
+  enum Acu1_hazardlightrequestType {
+    ACU1_HAZARDLIGHTREQUEST_NO_REQUEST = 0;
+    ACU1_HAZARDLIGHTREQUEST_OFF = 1;
+    ACU1_HAZARDLIGHTREQUEST_ON = 2;
+    ACU1_HAZARDLIGHTREQUEST_RESERVED = 3;
+  }
+  enum Acu1_gearrequestType {
+    ACU1_GEARREQUEST_NO_REQUEST = 0;
+    ACU1_GEARREQUEST_P = 1;
+    ACU1_GEARREQUEST_R = 2;
+    ACU1_GEARREQUEST_N = 3;
+    ACU1_GEARREQUEST_D = 4;
+    ACU1_GEARREQUEST_RESERVED = 5;
+//    ACU1_GEARREQUEST_RESERVED = 6;
+//    ACU1_GEARREQUEST_RESERVED = 7;
+  }
+  enum Acu1_accelcontrolstateType {
+    ACU1_ACCELCONTROLSTATE_NO_REQUEST = 0;
+    ACU1_ACCELCONTROLSTATE_ACC_REQUEST = 1;
+    ACU1_ACCELCONTROLSTATE_AEB_REQUEST = 2;
+    ACU1_ACCELCONTROLSTATE_RESERVED = 3;
+  }
+  // This signal is take over request [] [0|1]
+  optional Acu1_takeoverrequestType acu1_takeoverrequest = 1;
+  // This signal is stand still request [] [0|1]
+  optional Acu1_standstillrequestType acu1_standstillrequest = 2;
+  // This signal is EPB request [] [0|3]
+  optional Acu1_epbrequestType acu1_epbrequest = 3;
+  // This signal is right light request [] [0|3]
+  optional Acu1_rightlightrequestType acu1_rightlightrequest = 4;
+  // This signal is steering speed request [deg/s] [0|500]
+  optional int32 acu1_steeringspeedrequest = 5;
+  // This signal is left light request [] [0|3]
+  optional Acu1_leftlightrequestType acu1_leftlightrequest = 6;
+  // This signal is the status of steering control request [] [0|3]
+  optional Acu1_steeringcontrolstateType acu1_steeringcontrolstate = 7;
+  // This signal is steering angle request [deg] [-600|600]
+  optional double acu1_steeringanglerequest = 8;
+  // This signal is hazard light request [] [0|3]
+  optional Acu1_hazardlightrequestType acu1_hazardlightrequest = 9;
+  // This signal is gear request [] [0|7]
+  optional Acu1_gearrequestType acu1_gearrequest = 10;
+  // This signal is acceleration request [m/s2] [-10|10]
+  optional double acu1_accelerationrequest = 11;
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 acu1_livecounter = 12;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 acu1_checksum = 13;
+  // This signal is the status of the accel control request [] [0|3]
+  optional Acu1_accelcontrolstateType acu1_accelcontrolstate = 14;
+}
+
+message Dbg1_7ff {
+// Report Message
+  // [] [0|255]
+  optional int32 dbg1_byte7 = 1;
+  // [] [0|255]
+  optional int32 dbg1_byte6 = 2;
+  // [] [0|255]
+  optional int32 dbg1_byte5 = 3;
+  // [] [0|255]
+  optional int32 dbg1_byte4 = 4;
+  // [] [0|255]
+  optional int32 dbg1_byte3 = 5;
+  // [] [0|255]
+  optional int32 dbg1_byte2 = 6;
+  // [] [0|255]
+  optional int32 dbg1_byte1 = 7;
+  // [] [0|255]
+  optional int32 dbg1_byte0 = 8;
+}
+
+message Gw1_3ae {
+// Report Message
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 gw1_livecounter = 1;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 gw1_checksum = 2;
+  // This signal is drive distance since prime start [km] [0|3355443]
+  optional double gw1_odometervalue = 3;
+}
+
+message Bcm1_3ad {
+// Report Message
+  enum Bcm1_wiperspeedType {
+    BCM1_WIPERSPEED_NO_WIPE = 0;
+    BCM1_WIPERSPEED_42_TIMES_MIN = 1;
+    BCM1_WIPERSPEED_45_TIMES_MIN = 2;
+    BCM1_WIPERSPEED_48_TIMES_MIN = 3;
+    BCM1_WIPERSPEED_51_TIMES_MIN = 4;
+    BCM1_WIPERSPEED_54_TIMES_MIN = 5;
+    BCM1_WIPERSPEED_57_TIMES_MIN = 6;
+    BCM1_WIPERSPEED_60_TIMES_MIN = 7;
+  }
+  enum Bcm1_positionlightstType {
+    BCM1_POSITIONLIGHTST_OFF = 0;
+    BCM1_POSITIONLIGHTST_ON = 1;
+    BCM1_POSITIONLIGHTST_RESERVED = 2;
+//    BCM1_POSITIONLIGHTST_RESERVED = 3;
+  }
+  enum Bcm1_driversidebuckleType {
+    BCM1_DRIVERSIDEBUCKLE_UNBUCKLED = 0;
+    BCM1_DRIVERSIDEBUCKLE_BUCKLED = 1;
+    BCM1_DRIVERSIDEBUCKLE_RESERVED = 2;
+//    BCM1_DRIVERSIDEBUCKLE_RESERVED = 3;
+  }
+  enum Bcm1_wiperstatusType {
+    BCM1_WIPERSTATUS_OFF = 0;
+    BCM1_WIPERSTATUS_TIP = 1;
+    BCM1_WIPERSTATUS_INTERVAL_OR_AUTO_LEVER = 2;
+    BCM1_WIPERSTATUS_LOW_SPEED = 3;
+    BCM1_WIPERSTATUS_HIGH_SPEED = 4;
+    BCM1_WIPERSTATUS_RESERVED = 5;
+//    BCM1_WIPERSTATUS_RESERVED = 6;
+//    BCM1_WIPERSTATUS_RESERVED = 7;
+  }
+  enum Bcm1_luggagedoorstType {
+    BCM1_LUGGAGEDOORST_CLOSE = 0;
+    BCM1_LUGGAGEDOORST_OPEN = 1;
+  }
+  enum Bcm1_lowbeamstType {
+    BCM1_LOWBEAMST_OFF = 0;
+    BCM1_LOWBEAMST_ON = 1;
+    BCM1_LOWBEAMST_RESERVED = 2;
+//    BCM1_LOWBEAMST_RESERVED = 3;
+  }
+  enum Bcm1_highbeamstType {
+    BCM1_HIGHBEAMST_OFF = 0;
+    BCM1_HIGHBEAMST_ON = 1;
+    BCM1_HIGHBEAMST_RESERVED = 2;
+//    BCM1_HIGHBEAMST_RESERVED = 3;
+  }
+  enum Bcm1_enghoodstType {
+    BCM1_ENGHOODST_CLOSE = 0;
+    BCM1_ENGHOODST_OPEN = 1;
+  }
+  enum Bcm1_rrdoorstType {
+    BCM1_RRDOORST_CLOSE = 0;
+    BCM1_RRDOORST_OPEN = 1;
+  }
+  enum Bcm1_rldoorstType {
+    BCM1_RLDOORST_CLOSE = 0;
+    BCM1_RLDOORST_OPEN = 1;
+  }
+  enum Bcm1_passengerdoorstType {
+    BCM1_PASSENGERDOORST_CLOSE = 0;
+    BCM1_PASSENGERDOORST_OPEN = 1;
+  }
+  enum Bcm1_driverdoorstType {
+    BCM1_DRIVERDOORST_CLOSE = 0;
+    BCM1_DRIVERDOORST_OPEN = 1;
+  }
+  enum Bcm1_steeringlightstType {
+    BCM1_STEERINGLIGHTST_OFF = 0;
+    BCM1_STEERINGLIGHTST_LEFT_ON = 1;
+    BCM1_STEERINGLIGHTST_RIGHT_ON = 2;
+    BCM1_STEERINGLIGHTST_RESERVED = 3;
+  }
+  enum Bcm1_hazardlightstType {
+    BCM1_HAZARDLIGHTST_OFF = 0;
+    BCM1_HAZARDLIGHTST_ON = 1;
+    BCM1_HAZARDLIGHTST_RESERVED = 2;
+//    BCM1_HAZARDLIGHTST_RESERVED = 3;
+  }
+  // This signal informs about the wiper speed requested by the Sensor according to rain intensity or other factors [] [0|7]
+  optional Bcm1_wiperspeedType bcm1_wiperspeed = 1;
+  // The signal indicates the status of position light. [] [0|3]
+  optional Bcm1_positionlightstType bcm1_positionlightst = 2;
+  // The signal is sent to indicate the Driver Seat Belt is buckled or Unbuckled. [] [0|3]
+  optional Bcm1_driversidebuckleType bcm1_driversidebuckle = 3;
+  // The signal indicates front wiper status. [] [0|7]
+  optional Bcm1_wiperstatusType bcm1_wiperstatus = 4;
+  // This signal indicates luggage door status [] [0|1]
+  optional Bcm1_luggagedoorstType bcm1_luggagedoorst = 5;
+  // The signal  indicates the status of low beam indicator. [] [0|3]
+  optional Bcm1_lowbeamstType bcm1_lowbeamst = 6;
+  // The signal  indicates the status of high beam indicator. [] [0|3]
+  optional Bcm1_highbeamstType bcm1_highbeamst = 7;
+  // This signal shows engine hood status. [] [0|1]
+  optional Bcm1_enghoodstType bcm1_enghoodst = 8;
+  // This signal indicates the state of RR door. [] [0|1]
+  optional Bcm1_rrdoorstType bcm1_rrdoorst = 9;
+  // This signal indicates the state of RL door. [] [0|1]
+  optional Bcm1_rldoorstType bcm1_rldoorst = 10;
+  // This signal indicates the state of passenger door. [] [0|1]
+  optional Bcm1_passengerdoorstType bcm1_passengerdoorst = 11;
+  // This signal indicates the state of driver door. [] [0|1]
+  optional Bcm1_driverdoorstType bcm1_driverdoorst = 12;
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 bcm1_livecounter = 13;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 bcm1_checksum = 14;
+  // The signal indicates the driving status of the turn light. [] [0|3]
+  optional Bcm1_steeringlightstType bcm1_steeringlightst = 15;
+  // The signal indicates Indicates the Hazard Warning is active or not [] [0|3]
+  optional Bcm1_hazardlightstType bcm1_hazardlightst = 16;
+}
+
+message Ads1_3a9 {
+// Report Message
+  enum Ads1_jerkstType {
+    ADS1_JERKST_NO_PRESS = 0;
+    ADS1_JERKST_PRESS = 1;
+  }
+  enum Ads1_stopbuttonType {
+    ADS1_STOPBUTTON_NO_PRESS = 0;
+    ADS1_STOPBUTTON_PRESSS = 1;
+  }
+  enum Ads1_startbuttonType {
+    ADS1_STARTBUTTON_NO_PRESS = 0;
+    ADS1_STARTBUTTON_PRESSS = 1;
+  }
+  enum Ads1_powerbuttonType {
+    ADS1_POWERBUTTON_NO_PRESS = 0;
+    ADS1_POWERBUTTON_PRESSS = 1;
+  }
+  enum Ads1_backupbuttonType {
+    ADS1_BACKUPBUTTON_NO_PRESS = 0;
+    ADS1_BACKUPBUTTON_PRESSS = 1;
+  }
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 ads1_livecounter = 1;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 ads1_checksum = 2;
+  // This signal indicates the state of Jerk Button [] [0|1]
+  optional Ads1_jerkstType ads1_jerkst = 3;
+  // This Signal is stop button state [] [0|1]
+  optional Ads1_stopbuttonType ads1_stopbutton = 4;
+  // This Signal is start button state [] [0|1]
+  optional Ads1_startbuttonType ads1_startbutton = 5;
+  // This Signal is power button state [] [0|1]
+  optional Ads1_powerbuttonType ads1_powerbutton = 6;
+  // This Signal is backup button state [] [0|1]
+  optional Ads1_backupbuttonType ads1_backupbutton = 7;
+}
+
+message Acu2_572 {
+// Control Message
+  enum Acu2_led3Type {
+    ACU2_LED3_OFF = 0;
+    ACU2_LED3_ON = 1;
+  }
+  enum Acu2_led2Type {
+    ACU2_LED2_OFF = 0;
+    ACU2_LED2_ON = 1;
+  }
+  enum Acu2_led1Type {
+    ACU2_LED1_OFF = 0;
+    ACU2_LED1_ON = 1;
+  }
+  enum Acu2_hornType {
+    ACU2_HORN_OFF = 0;
+    ACU2_HORN_ON = 1;
+  }
+  enum Acu2_steeringlamprequestType {
+    ACU2_STEERINGLAMPREQUEST_OFF = 0;
+    ACU2_STEERINGLAMPREQUEST_LEFT_ON = 1;
+    ACU2_STEERINGLAMPREQUEST_RIGHT_ON = 2;
+    ACU2_STEERINGLAMPREQUEST_HAZARD_ON = 3;
+  }
+  enum Acu2_rearwiperrequestType {
+    ACU2_REARWIPERREQUEST_OFF = 0;
+    ACU2_REARWIPERREQUEST_TIP = 1;
+    ACU2_REARWIPERREQUEST_SPRAY = 2;
+    ACU2_REARWIPERREQUEST_RESERVED = 3;
+  }
+  enum Acu2_lamphornType {
+    ACU2_LAMPHORN_OFF = 0;
+    ACU2_LAMPHORN_ON = 1;
+  }
+  enum Acu2_frontwiperrequestType {
+    ACU2_FRONTWIPERREQUEST_OFF = 0;
+    ACU2_FRONTWIPERREQUEST_TIP = 1;
+    ACU2_FRONTWIPERREQUEST_INTERVAL = 2;
+    ACU2_FRONTWIPERREQUEST_LOW = 3;
+    ACU2_FRONTWIPERREQUEST_HIGH = 4;
+    ACU2_FRONTWIPERREQUEST_RESERVED = 5;
+//    ACU2_FRONTWIPERREQUEST_RESERVED = 6;
+//    ACU2_FRONTWIPERREQUEST_RESERVED = 7;
+  }
+  enum Acu2_frontsprayrequestType {
+    ACU2_FRONTSPRAYREQUEST_NO_SPRAY = 0;
+    ACU2_FRONTSPRAYREQUEST_SPRAY = 1;
+  }
+  enum Acu2_frontintervallevelType {
+    ACU2_FRONTINTERVALLEVEL_LEVEL_1 = 0;
+    ACU2_FRONTINTERVALLEVEL_LEVEL_2 = 1;
+    ACU2_FRONTINTERVALLEVEL_LEVEL_3 = 2;
+    ACU2_FRONTINTERVALLEVEL_LEVEL_4 = 3;
+  }
+  enum Acu2_beamlamprequestType {
+    ACU2_BEAMLAMPREQUEST_OFF = 0;
+    ACU2_BEAMLAMPREQUEST_POSITION = 1;
+    ACU2_BEAMLAMPREQUEST_LOW_BEAM = 2;
+    ACU2_BEAMLAMPREQUEST_HIGH_BEAM = 3;
+  }
+  // This signal is the the LED3 switch [] [0|1]
+  optional Acu2_led3Type acu2_led3 = 1;
+  // This signal is the the LED2 switch [] [0|1]
+  optional Acu2_led2Type acu2_led2 = 2;
+  // This signal is the the LED1 switch [] [0|1]
+  optional Acu2_led1Type acu2_led1 = 3;
+  // This signal is the the steering horn request [] [0|1]
+  optional Acu2_hornType acu2_horn = 4;
+  // This signal is the the steering lamp or hazard lamp request [] [0|3]
+  optional Acu2_steeringlamprequestType acu2_steeringlamprequest = 5;
+  // This signal is the the steering rear wiper request [] [0|3]
+  optional Acu2_rearwiperrequestType acu2_rearwiperrequest = 6;
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 acu2_livecounter = 7;
+  // This signal is the the horn lamp or request [] [0|1]
+  optional Acu2_lamphornType acu2_lamphorn = 8;
+  // This signal is the the steering front wiper request [] [0|7]
+  optional Acu2_frontwiperrequestType acu2_frontwiperrequest = 9;
+  // This signal is the the steering front spray request [] [0|1]
+  optional Acu2_frontsprayrequestType acu2_frontsprayrequest = 10;
+  // This signal is the the steering front wiper interval level request [] [0|3]
+  optional Acu2_frontintervallevelType acu2_frontintervallevel = 11;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 acu2_checksum = 12;
+  // This signal is the the beam lamp or position lamp request [] [0|3]
+  optional Acu2_beamlamprequestType acu2_beamlamprequest = 13;
+}
+
+message Vcu3_3a3 {
+// Report Message
+  enum Vcu3_drivingdirectionType {
+    VCU3_DRIVINGDIRECTION_STOP = 0;
+    VCU3_DRIVINGDIRECTION_FORWARD = 1;
+    VCU3_DRIVINGDIRECTION_BACKWARD = 2;
+    VCU3_DRIVINGDIRECTION_INVALID_VALUE = 3;
+  }
+  // The signal describes the raw vehicle speed calculated by ABS. [km/h] [0|300]
+  optional double vcu3_vehiclespeed = 1;
+  // The signal indicates driving direction of the vehicle. [] [0|3]
+  optional Vcu3_drivingdirectionType vcu3_drivingdirection = 2;
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 vcu3_livecounter = 3;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 cds1_checksum = 4;
+}
+
+message Vcu2_3a2 {
+// Report Message
+  enum Vcu2_brakepedalstType {
+    VCU2_BRAKEPEDALST_NO_ACTUATED = 0;
+    VCU2_BRAKEPEDALST_ACTUATED = 1;
+    VCU2_BRAKEPEDALST_RESERVED = 2;
+    VCU2_BRAKEPEDALST_ERROR = 3;
+  }
+  // This signal indicates the brake pedal status. [] [0|3]
+  optional Vcu2_brakepedalstType vcu2_brakepedalst = 1;
+  // The signal indicates the actual pressure in the master cylinder. [bar] [0|200]
+  optional double vcu2_mastercylinderpressure = 2;
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 vcu2_livecounter = 3;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 vcu2_checksum = 4;
+  // This signal indicates the actual acceleration pedal position [%] [0|100]
+  optional double vcu2_accelpedalposition = 5;
+}
+
+message Vcu1_3a1 {
+// Report Message
+  enum Vcu1_epbswitchType {
+    VCU1_EPBSWITCH_NO_PRESS = 0;
+    VCU1_EPBSWITCH_UP = 1;
+    VCU1_EPBSWITCH_DOWN = 2;
+    VCU1_EPBSWITCH_RESERVED = 3;
+  }
+  enum Vcu1_leverinfoType {
+    VCU1_LEVERINFO_P = 0;
+    VCU1_LEVERINFO_R = 1;
+    VCU1_LEVERINFO_N = 2;
+    VCU1_LEVERINFO_D = 3;
+    VCU1_LEVERINFO_S = 4;
+    VCU1_LEVERINFO_M = 5;
+    VCU1_LEVERINFO_W = 6;
+    VCU1_LEVERINFO_E = 7;
+    VCU1_LEVERINFO_B = 8;
+    VCU1_LEVERINFO_RESERVED = 9;
+//    VCU1_LEVERINFO_RESERVED = 10;
+//    VCU1_LEVERINFO_RESERVED = 11;
+//    VCU1_LEVERINFO_RESERVED = 12;
+//    VCU1_LEVERINFO_RESERVED = 13;
+    VCU1_LEVERINFO_NO_CONNECTION = 14;
+    VCU1_LEVERINFO_INVALID_VALUE = 15;
+  }
+  enum Vcu1_epbstatusType {
+    VCU1_EPBSTATUS_RELEASED = 0;
+    VCU1_EPBSTATUS_RELEASING_OR_LOCKING = 1;
+    VCU1_EPBSTATUS_LOCKED = 2;
+    VCU1_EPBSTATUS_UNKNOW = 3;
+  }
+  // This signal indicate the EPB switch status. [] [0|3]
+  optional Vcu1_epbswitchType vcu1_epbswitch = 1;
+  // This signal indicates the lever position information which should be displayed on the dashboard. [] [0|15]
+  optional Vcu1_leverinfoType vcu1_leverinfo = 2;
+  // The signal indicates the working status of EPB. [] [0|3]
+  optional Vcu1_epbstatusType vcu1_epbstatus = 3;
+  // The Livecounter is used to check the signal consistency of the messages [count] [0|15]
+  optional int32 vcu1_livecounter = 4;
+  // The checksum is used to check whether the data transmission errors [check] [0|255]
+  optional int32 vcu1_checksum = 5;
+  // This signal indicates the teering wheel rotation speed. anticlockwise=negative, clockwise=positive [deg/s] [-600|600]
+  optional double vcu1_steeringspeed = 6;
+  // This signal indicates the angle of steering wheel. anticlockwise=negative, clockwise=positive [deg] [-600|600]
+  optional double vcu1_steeringangle = 7;
+}
+
+message Vcu5_3a5 {
+// Report Message
+  enum Vcu5_wheelspeeddirection_rrType {
+    VCU5_WHEELSPEEDDIRECTION_RR_STOP = 0;
+    VCU5_WHEELSPEEDDIRECTION_RR_FORWARD = 1;
+    VCU5_WHEELSPEEDDIRECTION_RR_BACKWARD = 2;
+    VCU5_WHEELSPEEDDIRECTION_RR_INVALID_VALUE = 3;
+  }
+  enum Vcu5_wheelspeeddirection_rlType {
+    VCU5_WHEELSPEEDDIRECTION_RL_STOP = 0;
+    VCU5_WHEELSPEEDDIRECTION_RL_FORWARD = 1;
+    VCU5_WHEELSPEEDDIRECTION_RL_BACKWARD = 2;
+    VCU5_WHEELSPEEDDIRECTION_RL_INVALID_VALUE = 3;
+  }
+  enum Vcu5_wheelspeeddirection_frType {
+    VCU5_WHEELSPEEDDIRECTION_FR_STOP = 0;
+    VCU5_WHEELSPEEDDIRECTION_FR_FORWARD = 1;
+    VCU5_WHEELSPEEDDIRECTION_FR_BACKWARD = 2;
+    VCU5_WHEELSPEEDDIRECTION_FR_INVALID_VALUE = 3;
+  }
+  enum Vcu5_wheelspeeddirection_flType {
+    VCU5_WHEELSPEEDDIRECTION_FL_STOP = 0;
+    VCU5_WHEELSPEEDDIRECTION_FL_FORWARD = 1;
+    VCU5_WHEELSPEEDDIRECTION_FL_BACKWARD = 2;
+    VCU5_WHEELSPEEDDIRECTION_FL_INVALID_VALUE = 3;
+  }
+  // This signal is the the rear right  wheel speed direction. [] [0|3]
+  optional Vcu5_wheelspeeddirection_rrType vcu5_wheelspeeddirection_rr = 1;
+  // This signal is the the rear left wheel speed direction. [] [0|3]
+  optional Vcu5_wheelspeeddirection_rlType vcu5_wheelspeeddirection_rl = 2;
+  // This signal is the the front right wheel speed direction. [] [0|3]
+  optional Vcu5_wheelspeeddirection_frType vcu5_wheelspeeddirection_fr = 3;
+  // This signal is the the front left wheel speed direction. [] [0|3]
+  optional Vcu5_wheelspeeddirection_flType vcu5_wheelspeeddirection_fl = 4;
+  // This signal is the rear right wheel speed pulse(raw data). [pulse] [0|254]
+  optional int32 vcu5_wheelpulse_rr = 5;
+  // This signal is the rear left wheel speed pulse(raw data). [pulse] [0|254]
+  optional int32 vcu5_wheelpulse_rl = 6;
+  // This signal is the front right wheel speed pulse(raw data). [pulse] [0|254]
+  optional int32 vcu5_wheelpulse_fr = 7;
+  // This signal is the front left wheel speed pulse(raw data). [pulse] [0|254]
+  optional int32 vcu5_wheelpulse_fl = 8;
+}
+
+message Vcu4_3a4 {
+// Report Message
+  // This signal is rear right wheel speed which sent by ABS without filtering. [km/h] [0|300]
+  optional double vcu4_wheelspeed_rr = 1;
+  // This signal is rear left wheel speed which sent by ABS without filtering. [km/h] [0|300]
+  optional double vcu4_wheelspeed_rl = 2;
+  // This signal is front right wheel speed which sent by ABS without filtering. [km/h] [0|300]
+  optional double vcu4_wheelspeed_fr = 3;
+  // This signal is front left wheel speed which sent by ABS without filtering. [km/h] [0|300]
+  optional double vcu4_wheelspeed_fl = 4;
+}
+
+message Bte01 {
+  optional Cds1_3ac cds1_3ac = 1; // report message
+  optional Eps1_3ab eps1_3ab = 2; // report message
+  optional Esc1_3aa esc1_3aa = 3; // report message
+  optional Acu1_570 acu1_570 = 4; // control message
+  optional Dbg1_7ff dbg1_7ff = 5; // report message
+  optional Gw1_3ae gw1_3ae = 6; // report message
+  optional Bcm1_3ad bcm1_3ad = 7; // report message
+  optional Ads1_3a9 ads1_3a9 = 8; // report message
+  optional Acu2_572 acu2_572 = 9; // control message
+  optional Vcu3_3a3 vcu3_3a3 = 10; // report message
+  optional Vcu2_3a2 vcu2_3a2 = 11; // report message
+  optional Vcu1_3a1 vcu1_3a1 = 12; // report message
+  optional Vcu5_3a5 vcu5_3a5 = 13; // report message
+  optional Vcu4_3a4 vcu4_3a4 = 14; // report message
+}

@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package smartsim.drivers;
+
+import "third_party/smartsim/proto/drivers/chassis.proto";
+import "third_party/smartsim/proto/common/vehicle_config.proto";
+
+message VehicleParameter {
+  optional smartsim.common.VehicleBrand brand = 1;
+  optional double max_engine_pedal = 2;
+  optional int32 max_enable_fail_attempt = 3;
+  optional Chassis.DrivingMode driving_mode = 4;
+}

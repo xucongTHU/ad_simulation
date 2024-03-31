@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+package smartsim.control;
+
+import "third_party/smartsim/proto/control/calibration_table.proto";
+import "third_party/smartsim/proto/control/leadlag_conf.proto";
+
+// controller param
+message SmcControllerConf {
+  optional double ts = 1;  // longitudinal controller sampling time
+  optional bool enable_speed_error_filter = 2 [default = false];
+  optional bool enable_station_error_filter = 3 [default = false];
+  optional double speed_error_limit = 4;
+  optional double station_error_limit = 5;
+  optional double preview_window = 6;
+  optional double standstill_acceleration = 7;
+
+  optional double range_error_slop_max = 8;
+  optional double smc_rate_eps = 9;
+  optional double smc_rate_slop = 10;
+
+  optional double switch_speed = 11;  // low/high speed controller switch speed
+  optional double switch_speed_window = 12 [default = 0.0];
+  optional double pitch_angle_filter_cutoff_freq = 13;
+  optional int32 mean_filter_window_size = 14;
+
+  optional LeadlagConf reverse_station_leadlag_conf = 15;
+  optional LeadlagConf reverse_speed_leadlag_conf = 16;
+  optional bool enable_reverse_leadlag_compensation = 17 [default = false];
+
+  optional double max_accel_jerk = 18;
+  optional double max_decel_jerk = 19;
+  optional double soft_stopping_time = 20;
+  optional double speed_error_deadzone = 21;
+  optional int32 stopping_debounce_max_cycle = 22;
+  optional int32 starting_debounce_max_cycle = 23;
+
+  optional double latency_ts = 24;
+}

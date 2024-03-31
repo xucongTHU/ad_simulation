@@ -1,0 +1,54 @@
+syntax = "proto2";
+
+package smartsim.planning;
+
+message FrenetState {
+  message Init {
+    optional double l = 1;
+    optional double ld = 2;
+    optional double ldd = 3;
+  }
+  message End {
+    optional double l = 1;
+    optional double ld = 2;
+    optional double ldd = 3;
+  }
+  optional Init init = 1;
+  optional End end = 2;
+}
+
+message Bounds {
+  message PathBound {
+    optional double lower = 1;
+    optional double upper = 2;
+  }
+  message AccBound {
+    optional double lower = 1;
+    optional double upper = 2;
+  }
+  message JerkBound {
+    optional double lower = 1;
+    optional double upper = 2;
+  }
+  optional double delta_s = 1;
+  optional double start_s = 2;
+  optional string label = 3;
+  repeated PathBound path_bound = 4;
+  repeated AccBound acc_bound = 5;
+  repeated JerkBound jerk_bound = 6;
+}
+
+message GuideLine {
+  optional bool valid = 1;
+  repeated double l = 2;
+  repeated double weight = 3;
+}
+
+message QPDebug {
+  optional double time = 1;
+  optional FrenetState frenet_state = 2;
+  optional Bounds bounds = 3;
+  optional GuideLine guide_line = 4;
+}
+
+

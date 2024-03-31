@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package smartsim.drivers;
+
+import "third_party/smartsim/proto/drivers/can_card_parameter.proto";
+import "third_party/smartsim/proto/drivers/vehicle_parameter.proto";
+
+message CanbusConf {
+  optional VehicleParameter vehicle_parameter = 1;
+  optional smartsim.drivers.CANCardParameter can_card_parameter = 2;
+  optional bool enable_debug_mode = 3 [default = false];
+  optional bool enable_receiver_log = 4 [default = false];
+  optional bool enable_sender_log = 5 [default = false];
+}

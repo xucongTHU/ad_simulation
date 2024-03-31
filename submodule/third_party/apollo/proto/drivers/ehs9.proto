@@ -1,0 +1,1079 @@
+syntax = "proto2";
+
+package smartsim.drivers;
+
+message Svb1_1_109 {
+// Control Message
+  enum Svb1_decelerationrequeststType {
+    SVB1_DECELERATIONREQUESTST_NO_REQUEST = 0;
+    SVB1_DECELERATIONREQUESTST_ACC_REQUEST = 1;
+    SVB1_DECELERATIONREQUESTST_AEB_REQUEST = 2;
+    SVB1_DECELERATIONREQUESTST_RESERVED = 3;
+  }
+  enum Svb1_failurestatusType {
+    SVB1_FAILURESTATUS_NO_ERROR = 0;
+    SVB1_FAILURESTATUS_ERROR = 1;
+    SVB1_FAILURESTATUS_RESERVED = 2;
+    SVB1_FAILURESTATUS_RESERVED_1 = 3;
+  }
+  enum Svb1_steeringrequeststType {
+    SVB1_STEERINGREQUESTST_NO_REQUEST = 0;
+    SVB1_STEERINGREQUESTST_REQUEST = 1;
+    SVB1_STEERINGREQUESTST_RESERVED = 2;
+    SVB1_STEERINGREQUESTST_RESERVED_1 = 3;
+  }
+  enum Svb1_steeringanglesignrequestType {
+    SVB1_STEERINGANGLESIGNREQUEST_NO_REQUEST = 0;
+    SVB1_STEERINGANGLESIGNREQUEST_LEFT_POSITIVE = 1;
+    SVB1_STEERINGANGLESIGNREQUEST_RIGHT_NEGATIVE = 2;
+    SVB1_STEERINGANGLESIGNREQUEST_RESERVED = 3;
+  }
+  enum Svb1_steeringspeedsignrequestType {
+    SVB1_STEERINGSPEEDSIGNREQUEST_NO_REQUEST = 0;
+    SVB1_STEERINGSPEEDSIGNREQUEST_LEFT_POSITIVE = 1;
+    SVB1_STEERINGSPEEDSIGNREQUEST_RIGHT_NEGATIVE = 2;
+    SVB1_STEERINGSPEEDSIGNREQUEST_RESERVED = 3;
+  }
+  enum Svb1_standstillrequestType {
+    SVB1_STANDSTILLREQUEST_NO_REQUEST = 0;
+    SVB1_STANDSTILLREQUEST_REQUEST = 1;
+  }
+  enum Svb1_steeringspeedrequestType {
+    SVB1_STEERINGSPEEDREQUEST_0 = 0;
+    SVB1_STEERINGSPEEDREQUEST_50 = 1;
+    SVB1_STEERINGSPEEDREQUEST_100 = 2;
+    SVB1_STEERINGSPEEDREQUEST_150 = 3;
+    SVB1_STEERINGSPEEDREQUEST_200 = 4;
+    SVB1_STEERINGSPEEDREQUEST_250 = 5;
+    SVB1_STEERINGSPEEDREQUEST_300 = 6;
+    SVB1_STEERINGSPEEDREQUEST_350 = 7;
+    SVB1_STEERINGSPEEDREQUEST_400 = 8;
+    SVB1_STEERINGSPEEDREQUEST_450 = 9;
+    SVB1_STEERINGSPEEDREQUEST_500 = 10;
+    SVB1_STEERINGSPEEDREQUEST_RESERVED = 11;
+    SVB1_STEERINGSPEEDREQUEST_RESERVED_1 = 12;
+    SVB1_STEERINGSPEEDREQUEST_RESERVED_2 = 13;
+    SVB1_STEERINGSPEEDREQUEST_RESERVED_3 = 14;
+    SVB1_STEERINGSPEEDREQUEST_RESERVED_4 = 15;
+  }
+  enum Svb1_takeoverrequestType {
+    SVB1_TAKEOVERREQUEST_NO_REQUEST = 0;
+    SVB1_TAKEOVERREQUEST_REQUEST = 1;
+  }
+  enum Svb1_accelerationrequeststType {
+    SVB1_ACCELERATIONREQUESTST_NO_REQUEST = 0;
+    SVB1_ACCELERATIONREQUESTST_REQUEST = 1;
+  }
+  enum Svb1_gearrequestType {
+    SVB1_GEARREQUEST_NO_REQUEST = 0;
+    SVB1_GEARREQUEST_P = 1;
+    SVB1_GEARREQUEST_R = 2;
+    SVB1_GEARREQUEST_N = 3;
+    SVB1_GEARREQUEST_D = 4;
+    SVB1_GEARREQUEST_RESERVED_1 = 5;
+    SVB1_GEARREQUEST_RESERVED_2 = 6;
+    SVB1_GEARREQUEST_INVALID_VALUE = 7;
+  }
+  // [] [0|1]
+  optional bool svb1_singlesvb1ctrlreq = 1;
+  // [deg] [0|31]
+  optional double svb1_steeringanglerequestdecimal = 2;
+  // [check] [0|255]
+  optional int32 checksum_svb1_1 = 3;
+  // [m/s2] [-10|0]
+  optional double svb1_decelerationrequest = 4;
+  // [] [0|3]
+  optional Svb1_decelerationrequeststType svb1_decelerationrequestst = 5;
+  // [] [0|3]
+  optional Svb1_failurestatusType svb1_failurestatus = 6;
+  // [] [0|3]
+  optional Svb1_steeringrequeststType svb1_steeringrequestst = 7;
+  // [deg] [0|1023]
+  optional int32 svb1_steeringanglerequest = 8;
+  // [] [0|3]
+  optional Svb1_steeringanglesignrequestType svb1_steeringanglesignrequest = 9;
+  // [] [0|3]
+  optional Svb1_steeringspeedsignrequestType svb1_steeringspeedsignrequest = 10;
+  // [] [0|1]
+  optional Svb1_standstillrequestType svb1_standstillrequest = 11;
+  // [deg/s] [0|15]
+  optional Svb1_steeringspeedrequestType svb1_steeringspeedrequest = 12;
+  // [m/s2] [0|6.3]
+  optional double svb1_accelerationrequest = 13;
+  // [] [0|1]
+  optional Svb1_takeoverrequestType svb1_takeoverrequest = 14;
+  // [] [0|1]
+  optional Svb1_accelerationrequeststType svb1_accelerationrequestst = 15;
+  // [] [0|7]
+  optional Svb1_gearrequestType svb1_gearrequest = 16;
+  // [count] [0|15]
+  optional int32 livecounter_svb1_1 = 17;
+}
+
+message Cds1_1_10a {
+// Report Message
+  enum Cds1_epbreadystatusType {
+    CDS1_EPBREADYSTATUS_READY = 0;
+    CDS1_EPBREADYSTATUS_REQUNREADY = 1;
+    CDS1_EPBREADYSTATUS_SEATBELTORDOORUNREADY = 2;
+    CDS1_EPBREADYSTATUS_L2ANDL3UNREADY = 3;
+    CDS1_EPBREADYSTATUS_REQ_SEATBELTORDOORUNREADY = 4;
+    CDS1_EPBREADYSTATUS_REQ_L2ANDL3UNREADY = 5;
+    CDS1_EPBREADYSTATUS_SEATBELTORDOOR_L2ANDL3UNREADY = 6;
+    CDS1_EPBREADYSTATUS_ALLUNREADY = 7;
+  }
+  enum Cds1_steeringtakeoverstType {
+    CDS1_STEERINGTAKEOVERST_INACTIVE = 0;
+    CDS1_STEERINGTAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds1_steeringfailurestType {
+    CDS1_STEERINGFAILUREST_NOT_FAIL = 0;
+    CDS1_STEERINGFAILUREST_SAS_ERR = 1;
+    CDS1_STEERINGFAILUREST_EPS_ERR = 2;
+    CDS1_STEERINGFAILUREST_APA_ERR = 3;
+    CDS1_STEERINGFAILUREST_TJP_ERR = 4;
+    CDS1_STEERINGFAILUREST_SAS_EPS_ERR = 5;
+    CDS1_STEERINGFAILUREST_SAS_APA_ERR = 6;
+    CDS1_STEERINGFAILUREST_SAS_TJP_ERR = 7;
+    CDS1_STEERINGFAILUREST_EPS_APA_ERR = 8;
+    CDS1_STEERINGFAILUREST_EPS_TJP_ERR = 9;
+    CDS1_STEERINGFAILUREST_APA_TJP_ERR = 10;
+    CDS1_STEERINGFAILUREST_SAS_EPS_APA_ERR = 11;
+    CDS1_STEERINGFAILUREST_SAS_EPS_TJP_ERR = 12;
+    CDS1_STEERINGFAILUREST_SAS_APA_TJP_ERR = 13;
+    CDS1_STEERINGFAILUREST_EPS_APA_TJP_ERR = 14;
+    CDS1_STEERINGFAILUREST_SAS_EPS_APA_TJP_ERR = 15;
+  }
+  enum Cds1_systemfailurestType {
+    CDS1_SYSTEMFAILUREST_NOT_FAIL = 0;
+    CDS1_SYSTEMFAILUREST_LOSE_SVB_SVB1 = 1;
+    CDS1_SYSTEMFAILUREST_LOSE_ADAS_SVB1 = 2;
+    CDS1_SYSTEMFAILUREST_LOSE_SVB_SVB2 = 3;
+    CDS1_SYSTEMFAILUREST_LOSE_SVB_SVB1_ADAS_SVB1 = 4;
+    CDS1_SYSTEMFAILUREST_LOSE_SVB_SVB1_SVB_SVB2 = 5;
+    CDS1_SYSTEMFAILUREST_LOSE_ADAS_SVB1_SVB_SVB2 = 6;
+    CDS1_SYSTEMFAILUREST_LOSE_SVB_SVB1_ADAS_SVB1_SVB_SVB2 = 7;
+  }
+  enum Cds1_drivingtakeoverstType {
+    CDS1_DRIVINGTAKEOVERST_INACTIVE = 0;
+    CDS1_DRIVINGTAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds1_systemcontrolstType {
+    CDS1_SYSTEMCONTROLST_INACTIVE = 0;
+    CDS1_SYSTEMCONTROLST_SVB_SVB1_ENABLE = 1;
+    CDS1_SYSTEMCONTROLST_ADAS_SVB1_ENABLE = 2;
+    CDS1_SYSTEMCONTROLST_SVB_SVB2_ENABLE = 3;
+  }
+  enum Cds1_steeringautocontrolstType {
+    CDS1_STEERINGAUTOCONTROLST_INACTIVE = 0;
+    CDS1_STEERINGAUTOCONTROLST_ACTIVE = 1;
+    CDS1_STEERINGAUTOCONTROLST_DEGRADE = 2;
+    CDS1_STEERINGAUTOCONTROLST_RESERVED = 3;
+  }
+  enum Cds1_drivingfailurestType {
+    CDS1_DRIVINGFAILUREST_NOT_FAIL = 0;
+    CDS1_DRIVINGFAILUREST_YRS_ERR = 1;
+    CDS1_DRIVINGFAILUREST_SPD_ERR = 2;
+    CDS1_DRIVINGFAILUREST_HCU_ERR = 3;
+    CDS1_DRIVINGFAILUREST_YRS_SPD_ERR = 4;
+    CDS1_DRIVINGFAILUREST_YRS_HCU_ERR = 5;
+    CDS1_DRIVINGFAILUREST_SPD_HCU_ERR = 6;
+    CDS1_DRIVINGFAILUREST_YRS_SPD_HCU_ERR = 7;
+  }
+  enum Cds1_brakingtakeoverstType {
+    CDS1_BRAKINGTAKEOVERST_INACTIVE = 0;
+    CDS1_BRAKINGTAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds1_brakingfailurestType {
+    CDS1_BRAKINGFAILUREST_NOT_FAIL = 0;
+    CDS1_BRAKINGFAILUREST_EPB_ERR = 1;
+    CDS1_BRAKINGFAILUREST_CDDS_AEB_ERR = 2;
+    CDS1_BRAKINGFAILUREST_VLC_VMC_ERR = 3;
+    CDS1_BRAKINGFAILUREST_EPB_CDDS_AEB_ERR = 4;
+    CDS1_BRAKINGFAILUREST_EPB_VLC_VMC_ERR = 5;
+    CDS1_BRAKINGFAILUREST_CDDS_AEB_VLC_VMC_ERR = 6;
+    CDS1_BRAKINGFAILUREST_EPB_CDDS_AEB_VLC_VMC_ERR = 7;
+  }
+  enum Cds1_drivingautocontrolstType {
+    CDS1_DRIVINGAUTOCONTROLST_INACTIVE = 0;
+    CDS1_DRIVINGAUTOCONTROLST_ACTIVE = 1;
+    CDS1_DRIVINGAUTOCONTROLST_DEGRADE = 2;
+    CDS1_DRIVINGAUTOCONTROLST_RESERVED = 3;
+  }
+  enum Cds1_brakingautocontrolstType {
+    CDS1_BRAKINGAUTOCONTROLST_INACTIVE = 0;
+    CDS1_BRAKINGAUTOCONTROLST_ACTIVE = 1;
+    CDS1_BRAKINGAUTOCONTROLST_DEGRADE = 2;
+    CDS1_BRAKINGAUTOCONTROLST_RESERVED = 3;
+  }
+  // [] [0|1]
+  optional bool cds1_geartakeover = 1;
+  // [] [0|7]
+  optional Cds1_epbreadystatusType cds1_epbreadystatus = 2;
+  // [] [0|1]
+  optional Cds1_steeringtakeoverstType cds1_steeringtakeoverst = 3;
+  // [] [0|15]
+  optional Cds1_steeringfailurestType cds1_steeringfailurest = 4;
+  // [] [0|7]
+  optional Cds1_systemfailurestType cds1_systemfailurest = 5;
+  // [] [0|1]
+  optional Cds1_drivingtakeoverstType cds1_drivingtakeoverst = 6;
+  // [] [0|3]
+  optional Cds1_systemcontrolstType cds1_systemcontrolst = 7;
+  // [] [0|3]
+  optional Cds1_steeringautocontrolstType cds1_steeringautocontrolst = 8;
+  // [] [0|7]
+  optional Cds1_drivingfailurestType cds1_drivingfailurest = 9;
+  // [] [0|1]
+  optional Cds1_brakingtakeoverstType cds1_brakingtakeoverst = 10;
+  // [] [0|7]
+  optional Cds1_brakingfailurestType cds1_brakingfailurest = 11;
+  // [] [0|3]
+  optional Cds1_drivingautocontrolstType cds1_drivingautocontrolst = 12;
+  // [] [0|3]
+  optional Cds1_brakingautocontrolstType cds1_brakingautocontrolst = 13;
+  // [check] [0|255]
+  optional int32 checksum_cds1_1 = 14;
+  // [count] [0|15]
+  optional int32 livecounter_cds1_1 = 15;
+}
+
+message Cds2_1_10c {
+// Report Message
+  enum Cds2_epbreadystatusType {
+    CDS2_EPBREADYSTATUS_READY = 0;
+    CDS2_EPBREADYSTATUS_REQUNREADY = 1;
+    CDS2_EPBREADYSTATUS_SEATBELTORDOORUNREADY = 2;
+    CDS2_EPBREADYSTATUS_L2ANDL3UNREADY = 3;
+    CDS2_EPBREADYSTATUS_REQ_SEATBELTORDOORUNREADY = 4;
+    CDS2_EPBREADYSTATUS_REQ_L2ANDL3UNREADY = 5;
+    CDS2_EPBREADYSTATUS_SEATBELTORDOOR_L2ANDL3UNREADY = 6;
+    CDS2_EPBREADYSTATUS_ALLUNREADY = 7;
+  }
+  enum Cds2_steeringtakeoverstType {
+    CDS2_STEERINGTAKEOVERST_INACTIVE = 0;
+    CDS2_STEERINGTAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds2_steeringfailurestType {
+    CDS2_STEERINGFAILUREST_NOT_FAIL = 0;
+    CDS2_STEERINGFAILUREST_SAS_ERR = 1;
+    CDS2_STEERINGFAILUREST_EPS_ERR = 2;
+    CDS2_STEERINGFAILUREST_APA_ERR = 3;
+    CDS2_STEERINGFAILUREST_TJP_ERR = 4;
+    CDS2_STEERINGFAILUREST_SAS_EPS_ERR = 5;
+    CDS2_STEERINGFAILUREST_SAS_APA_ERR = 6;
+    CDS2_STEERINGFAILUREST_SAS_TJP_ERR = 7;
+    CDS2_STEERINGFAILUREST_EPS_APA_ERR = 8;
+    CDS2_STEERINGFAILUREST_EPS_TJP_ERR = 9;
+    CDS2_STEERINGFAILUREST_APA_TJP_ERR = 10;
+    CDS2_STEERINGFAILUREST_SAS_EPS_APA_ERR = 11;
+    CDS2_STEERINGFAILUREST_SAS_EPS_TJP_ERR = 12;
+    CDS2_STEERINGFAILUREST_SAS_APA_TJP_ERR = 13;
+    CDS2_STEERINGFAILUREST_EPS_APA_TJP_ERR = 14;
+    CDS2_STEERINGFAILUREST_SAS_EPS_APA_TJP_ERR = 15;
+  }
+  enum Cds2_drivingtakeoverstType {
+    CDS2_DRIVINGTAKEOVERST_INACTIVE = 0;
+    CDS2_DRIVINGTAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds2_systemcontrolstType {
+    CDS2_SYSTEMCONTROLST_INACTIVE = 0;
+    CDS2_SYSTEMCONTROLST_SVB_SVB1_ENABLE = 1;
+    CDS2_SYSTEMCONTROLST_ADAS_VB1_ENABLE = 2;
+    CDS2_SYSTEMCONTROLST_SVB_SVB2_ENABLE = 3;
+  }
+  enum Cds2_steeringautocontrolstType {
+    CDS2_STEERINGAUTOCONTROLST_INACTIVE = 0;
+    CDS2_STEERINGAUTOCONTROLST_ACTIVE = 1;
+    CDS2_STEERINGAUTOCONTROLST_DEGRADE = 2;
+    CDS2_STEERINGAUTOCONTROLST_RESERVED = 3;
+  }
+  enum Cds2_drivingfailurestType {
+    CDS2_DRIVINGFAILUREST_NOT_FAIL = 0;
+    CDS2_DRIVINGFAILUREST_YRS_ERR = 1;
+    CDS2_DRIVINGFAILUREST_SPD_ERR = 2;
+    CDS2_DRIVINGFAILUREST_HCU_ERR = 3;
+    CDS2_DRIVINGFAILUREST_YRS_SPD_ERR = 4;
+    CDS2_DRIVINGFAILUREST_YRS_HCU_ERR = 5;
+    CDS2_DRIVINGFAILUREST_SPD_HCU_ERR = 6;
+    CDS2_DRIVINGFAILUREST_YRS_SPD_HCU_ERR = 7;
+  }
+  enum Cds2_brakingtakeoverstType {
+    CDS2_BRAKINGTAKEOVERST_INACTIVE = 0;
+    CDS2_BRAKINGTAKEOVERST_ACTIVE = 1;
+  }
+  enum Cds2_brakingfailurestType {
+    CDS2_BRAKINGFAILUREST_NOT_FAIL = 0;
+    CDS2_BRAKINGFAILUREST_EPB_ERR = 1;
+    CDS2_BRAKINGFAILUREST_CDDS_AEB_ERR = 2;
+    CDS2_BRAKINGFAILUREST_VLC_VMC_ERR = 3;
+    CDS2_BRAKINGFAILUREST_EPB_CDDS_AEB_ERR = 4;
+    CDS2_BRAKINGFAILUREST_EPB_VLC_VMC_ERR = 5;
+    CDS2_BRAKINGFAILUREST_CDDS_AEB_VLC_VMC_ERR = 6;
+    CDS2_BRAKINGFAILUREST_EPB_CDDS_AEB_VLC_VMC_ERR = 7;
+  }
+  enum Cds2_drivingautocontrolstType {
+    CDS2_DRIVINGAUTOCONTROLST_INACTIVE = 0;
+    CDS2_DRIVINGAUTOCONTROLST_ACTIVE = 1;
+    CDS2_DRIVINGAUTOCONTROLST_DEGRADE = 2;
+    CDS2_DRIVINGAUTOCONTROLST_RESERVED = 3;
+  }
+  enum Cds2_brakingautocontrolstType {
+    CDS2_BRAKINGAUTOCONTROLST_INACTIVE = 0;
+    CDS2_BRAKINGAUTOCONTROLST_ACTIVE = 1;
+    CDS2_BRAKINGAUTOCONTROLST_DEGRADE = 2;
+    CDS2_BRAKINGAUTOCONTROLST_RESERVED = 3;
+  }
+  // [] [0|7]
+  optional Cds2_epbreadystatusType cds2_epbreadystatus = 1;
+  // [] [0|1]
+  optional bool cds2_geartakeover = 2;
+  // [] [0|1]
+  optional Cds2_steeringtakeoverstType cds2_steeringtakeoverst = 3;
+  // [] [0|15]
+  optional Cds2_steeringfailurestType cds2_steeringfailurest = 4;
+  // [] [0|7]
+  optional int32 cds2_systemfailurest = 5;
+  // [] [0|1]
+  optional Cds2_drivingtakeoverstType cds2_drivingtakeoverst = 6;
+  // [] [0|3]
+  optional Cds2_systemcontrolstType cds2_systemcontrolst = 7;
+  // [] [0|3]
+  optional Cds2_steeringautocontrolstType cds2_steeringautocontrolst = 8;
+  // [] [0|7]
+  optional Cds2_drivingfailurestType cds2_drivingfailurest = 9;
+  // [] [0|1]
+  optional Cds2_brakingtakeoverstType cds2_brakingtakeoverst = 10;
+  // [] [0|7]
+  optional Cds2_brakingfailurestType cds2_brakingfailurest = 11;
+  // [] [0|3]
+  optional Cds2_drivingautocontrolstType cds2_drivingautocontrolst = 12;
+  // [] [0|3]
+  optional Cds2_brakingautocontrolstType cds2_brakingautocontrolst = 13;
+  // [check] [0|255]
+  optional int32 checksum_cds2_1 = 14;
+  // [count] [0|15]
+  optional int32 livecounter_cds2_1 = 15;
+}
+
+message Hcu_2_12_122 {
+// Report Message
+  enum Hcu_leverinfoType {
+    HCU_LEVERINFO_P = 0;
+    HCU_LEVERINFO_R = 1;
+    HCU_LEVERINFO_N = 2;
+    HCU_LEVERINFO_D = 3;
+    HCU_LEVERINFO_RESERVED = 4;
+    HCU_LEVERINFO_NO_CONNECTION = 5;
+    HCU_LEVERINFO_RESERVED_1 = 6;
+    HCU_LEVERINFO_INVALID_VALUE = 7;
+  }
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_hcu_2_12 = 1;
+  // This signal indicate Lever info for display [] [0|7]
+  optional Hcu_leverinfoType hcu_leverinfo = 2;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_hcu_2_12 = 3;
+}
+
+message Esc_2_1_132 {
+// Report Message
+  enum Workingst_epbType {
+    WORKINGST_EPB_RELEASED = 0;
+    WORKINGST_EPB_RELEASING_LOCKING = 1;
+    WORKINGST_EPB_LOCKED = 2;
+    WORKINGST_EPB_UNKNOWN = 3;
+  }
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_esc_2_1 = 1;
+  // The signal indicates the working status of EPB. [] [0|3]
+  optional Workingst_epbType workingst_epb = 2;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_esc_2_1 = 3;
+}
+
+message Esc_3_1_134 {
+// Report Message
+  enum YrsstType {
+    YRSST_CALIBRATED = 0;
+    YRSST_NOT_CALIBRATED = 1;
+  }
+  enum Errorst_yrsType {
+    ERRORST_YRS_NO_ERROR = 0;
+    ERRORST_YRS_ERROR = 1;
+  }
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_esc_3_1 = 1;
+  // This signal indicates the yaw rate data (real data sign depends on mounting position) anticlockwise=positive, clockwise=negative [deg/s] [-100|104.75]
+  optional double yawrate = 2;
+  // This signal indicates the status of yaw rate sensor [] [0|1]
+  optional YrsstType yrsst = 3;
+  // The signal is LongitudinalAcceleration(exact value).Positive value represents  forward,  negative value represents backward.  [] [-21.593|33.935969]
+  optional double acceleration_x = 4;
+  // This signal indicates the yaw rate data (raw data) anticlockwise=positive, clockwise=negative [deg/s] [-100|104.75]
+  optional double yawrate_raw = 5;
+  // The signal is Lateral Acceleration(exact value).Positive value represents right side of vehicle, negative value represents  left side of vehicle.  [] [-21.593|33.935969]
+  optional double acceleration_y = 6;
+  // This signal indicates if the YRS is error or not. [] [0|1]
+  optional Errorst_yrsType errorst_yrs = 7;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_esc_3_1 = 8;
+}
+
+message Esc_5_1_138 {
+// Report Message
+  enum Esc_brakepedalstatusType {
+    ESC_BRAKEPEDALSTATUS_BRAKE_PEDAL_NOT_APPLIED = 0;
+    ESC_BRAKEPEDALSTATUS_BRAKE_PEDAL_APPLIED = 1;
+  }
+  enum Esc_brakepedalstatus_qType {
+    ESC_BRAKEPEDALSTATUS_Q_NOTINITIALIZED = 0;
+    ESC_BRAKEPEDALSTATUS_Q_FAULT = 1;
+    ESC_BRAKEPEDALSTATUS_Q_FULL = 2;
+    ESC_BRAKEPEDALSTATUS_Q_RESERVED = 3;
+  }
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_esc_5_1 = 1;
+  // Indacates whether the pedal is applied by the driver. [] [0|1]
+  optional Esc_brakepedalstatusType esc_brakepedalstatus = 2;
+  // Qualifier for eB_BrakePedalStatus [] [0|3]
+  optional Esc_brakepedalstatus_qType esc_brakepedalstatus_q = 3;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_esc_5_1 = 4;
+}
+
+message Eps_1_1_150 {
+// Report Message
+  enum Eps_1_handsteeringtorquesignType {
+    EPS_1_HANDSTEERINGTORQUESIGN_LEFT_POSITIVE = 0;
+    EPS_1_HANDSTEERINGTORQUESIGN_RIGHT_NEGATIVE = 1;
+  }
+  enum Eps_1_errorstatusType {
+    EPS_1_ERRORSTATUS_NO_ERROR = 0;
+    EPS_1_ERRORSTATUS_GENERAL_ERROR_DERATE = 1;
+    EPS_1_ERRORSTATUS_CRITICAL_ERROR_LOSE = 2;
+    EPS_1_ERRORSTATUS_RESERVED = 3;
+  }
+  // [check] [0|255]
+  optional int32 checksum_eps_1_1 = 1;
+  // The signal indicates the torque measured by the torque sensor at the steering wheel. In case of a sensor error, the default value (0x3FF) of the signal is set [Nm] [0|10.23]
+  optional double eps_1_handsteeringtorque = 2;
+  // Indicates sign of hand steering torque (+/-) Hand steering torque to left = positive Hand steering torque to right = negative  [] [0|1]
+  optional Eps_1_handsteeringtorquesignType eps_1_handsteeringtorquesign = 3;
+  // Error indication of the EPS system [] [0|3]
+  optional Eps_1_errorstatusType eps_1_errorstatus = 4;
+  // [count] [0|15]
+  optional int32 livecounter_eps_1_1 = 5;
+}
+
+message Svb1_2_1a0 {
+// Control Message
+  enum Svb1_hazardlightrequestType {
+    SVB1_HAZARDLIGHTREQUEST_NO_REQUEST = 0;
+    SVB1_HAZARDLIGHTREQUEST_OFF = 1;
+    SVB1_HAZARDLIGHTREQUEST_ON = 2;
+    SVB1_HAZARDLIGHTREQUEST_RESERVED = 3;
+  }
+  enum Svb1_rightturninglightrequestType {
+    SVB1_RIGHTTURNINGLIGHTREQUEST_NO_REQUEST = 0;
+    SVB1_RIGHTTURNINGLIGHTREQUEST_OFF = 1;
+    SVB1_RIGHTTURNINGLIGHTREQUEST_ON = 2;
+    SVB1_RIGHTTURNINGLIGHTREQUEST_RESERVED = 3;
+  }
+  enum Svb1_leftturninglightrequestType {
+    SVB1_LEFTTURNINGLIGHTREQUEST_NO_REQUEST = 0;
+    SVB1_LEFTTURNINGLIGHTREQUEST_OFF = 1;
+    SVB1_LEFTTURNINGLIGHTREQUEST_ON = 2;
+    SVB1_LEFTTURNINGLIGHTREQUEST_RESERVED = 3;
+  }
+  // [] [0|3]
+  optional Svb1_hazardlightrequestType svb1_hazardlightrequest = 1;
+  // [] [0|3]
+  optional Svb1_rightturninglightrequestType svb1_rightturninglightrequest = 2;
+  // [] [0|3]
+  optional Svb1_leftturninglightrequestType svb1_leftturninglightrequest = 3;
+  // [check] [0|255]
+  optional int32 checksum_svb1_2 = 4;
+  // [count] [0|15]
+  optional int32 livecounter_svb1_2 = 5;
+}
+
+message Csc_1_1a6 {
+// Report Message
+  enum CruisemainswitchType {
+    CRUISEMAINSWITCH_NOT_PRESSED = 0;
+    CRUISEMAINSWITCH_PRESSED = 1;
+  }
+  enum CruisecancelswitchType {
+    CRUISECANCELSWITCH_NOT_PRESSED = 0;
+    CRUISECANCELSWITCH_PRESSED = 1;
+  }
+  enum SetordecreasespeedswitchType {
+    SETORDECREASESPEEDSWITCH_NOT_PRESSED = 0;
+    SETORDECREASESPEEDSWITCH_PRESSED = 1;
+  }
+  enum ResumeoincreasespeedswitchType {
+    RESUMEOINCREASESPEEDSWITCH_NOT_PRESSED = 0;
+    RESUMEOINCREASESPEEDSWITCH_PRESSED = 1;
+  }
+  enum IncreasedistanceswitchType {
+    INCREASEDISTANCESWITCH_NOT_PRESSED = 0;
+    INCREASEDISTANCESWITCH_PRESSED = 1;
+  }
+  enum DecreasedistanceswitchType {
+    DECREASEDISTANCESWITCH_NOT_PRESSED = 0;
+    DECREASEDISTANCESWITCH_PRESSED = 1;
+  }
+  // The signal indicates if the  ON/OFF cruise control switch is actived or not. [] [0|1]
+  optional CruisemainswitchType cruisemainswitch = 1;
+  // The signal indicates if the cancel cruise control switch is actived or not [] [0|1]
+  optional CruisecancelswitchType cruisecancelswitch = 2;
+  // The signal indicates if the set or decrease speed switch is actived or not. [] [0|1]
+  optional SetordecreasespeedswitchType setordecreasespeedswitch = 3;
+  // The signal indicates if the resume or increase speed switch is actived or not [] [0|1]
+  optional ResumeoincreasespeedswitchType resumeoincreasespeedswitch = 4;
+  // The signal indicates if  increase distance switch is actived or not [] [0|1]
+  optional IncreasedistanceswitchType increasedistanceswitch = 5;
+  // The signal indicates if decrease distance switch is actived or not [] [0|1]
+  optional DecreasedistanceswitchType decreasedistanceswitch = 6;
+}
+
+message Acu_1_200 {
+// Report Message
+  enum Seatbeltst_driverType {
+    SEATBELTST_DRIVER_UNBUCKLED = 0;
+    SEATBELTST_DRIVER_BUCKLED = 1;
+    SEATBELTST_DRIVER_RESERVED = 2;
+    SEATBELTST_DRIVER_RESERVED_1 = 3;
+  }
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_acu_1 = 1;
+  // The signal is sent to indicate the Driver Seat Belt is buckled or Unbuckled. [] [0|3]
+  optional Seatbeltst_driverType seatbeltst_driver = 2;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_acu_1 = 3;
+}
+
+message Hcu_2_9_208 {
+// Report Message
+  // Battery SOC(signal resolution is not as BMS_BatteryPackSOC in EVCAN) [%] [0|255]
+  optional int32 hcu_batterypacksoc = 1;
+}
+
+message Bcm1_1_230 {
+// Report Message
+  enum PositionlightstType {
+    POSITIONLIGHTST_OFF = 0;
+    POSITIONLIGHTST_ON = 1;
+  }
+  enum LowbeamstType {
+    LOWBEAMST_OFF = 0;
+    LOWBEAMST_ON = 1;
+  }
+  enum HighbeamstType {
+    HIGHBEAMST_OFF = 0;
+    HIGHBEAMST_ON = 1;
+  }
+  enum Turningst_leftType {
+    TURNINGST_LEFT_INACTIVE = 0;
+    TURNINGST_LEFT_ACTIVE = 1;
+  }
+  enum Turningst_rightType {
+    TURNINGST_RIGHT_INACTIVE = 0;
+    TURNINGST_RIGHT_ACTIVE = 1;
+  }
+  enum HazardwarningstType {
+    HAZARDWARNINGST_INACTIVE = 0;
+    HAZARDWARNINGST_ACTIVE = 1;
+  }
+  enum Wiperst_frontType {
+    WIPERST_FRONT_OFF = 0;
+    WIPERST_FRONT_TIP = 1;
+    WIPERST_FRONT_INTERVAL_OR_AUTO_LEVER = 2;
+    WIPERST_FRONT_LOW_SPEED = 3;
+    WIPERST_FRONT_HIGH_SPEED = 4;
+    WIPERST_FRONT_RESERVED = 5;
+    WIPERST_FRONT_RESERVED_1 = 6;
+    WIPERST_FRONT_RESERVED_2 = 7;
+  }
+  enum Wiperspeed_frontType {
+    WIPERSPEED_FRONT_NO_WIPE = 0;
+    WIPERSPEED_FRONT_42_TIMES_MIN = 1;
+    WIPERSPEED_FRONT_45_TIMES_MIN = 2;
+    WIPERSPEED_FRONT_48_TIMES_MIN = 3;
+    WIPERSPEED_FRONT_51_TIMES_MIN = 4;
+    WIPERSPEED_FRONT_54_TIMES_MIN = 5;
+    WIPERSPEED_FRONT_57_TIMES_MIN = 6;
+    WIPERSPEED_FRONT_60_TIMES_MIN = 7;
+  }
+  // The signal indicates the status of position light. [] [0|1]
+  optional PositionlightstType positionlightst = 1;
+  // The signal  indicates the status of low beam indicator. [] [0|1]
+  optional LowbeamstType lowbeamst = 2;
+  // The signal  indicates the status of high beam indicator. [] [0|1]
+  optional HighbeamstType highbeamst = 3;
+  // The signal indicates the driving status of the left turn light. [] [0|1]
+  optional Turningst_leftType turningst_left = 4;
+  // The signal indicates the driving status of the right turn light. [] [0|1]
+  optional Turningst_rightType turningst_right = 5;
+  // The signal indicates Indicates the Hazard Warning is active or not [] [0|1]
+  optional HazardwarningstType hazardwarningst = 6;
+  // The signal indicates front wiper status. [] [0|7]
+  optional Wiperst_frontType wiperst_front = 7;
+  // This signal informs about the wiper speed requested by the Sensor according to rain intensity or other factors [] [0|7]
+  optional Wiperspeed_frontType wiperspeed_front = 8;
+}
+
+message Bcm1_3_234 {
+// Report Message
+  enum EnginehoodstType {
+    ENGINEHOODST_CLOSE = 0;
+    ENGINEHOODST_OPEN = 1;
+  }
+  enum SunshadestType {
+    SUNSHADEST_FULLY_CLOSED = 0;
+    SUNSHADEST_BETWEEN_FULLY_CLOSED_AND_PARALLEL_OPEN_LIMIT = 1;
+    SUNSHADEST_PARALLEL_OPEN_LIMIT = 2;
+    SUNSHADEST_INVALID_VALUE = 3;
+  }
+  enum SunroofstType {
+    SUNROOFST_FULLY_CLOSED = 0;
+    SUNROOFST_BETWEEN_FULLY_CLOSED_AND_TILT_OPEN_LIMIT = 1;
+    SUNROOFST_TILT_OPEN_LIMIT = 2;
+    SUNROOFST_BETWEEN_FULLY_CLOSED_AND_PARALLEL_OPEN_LIMIT = 3;
+    SUNROOFST_PARALLEL_OPEN_LIMIT = 4;
+    SUNROOFST_PARALLEL_OPEN_HALF = 5;
+    SUNROOFST_RESERVED = 6;
+    SUNROOFST_INVALID_VALUE = 7;
+  }
+  // This signal shows engine hood status. [] [0|1]
+  optional EnginehoodstType enginehoodst = 1;
+  // This signal shows sunshade status. [] [0|3]
+  optional SunshadestType sunshadest = 2;
+  // This signal shows sunroof status. [] [0|7]
+  optional SunroofstType sunroofst = 3;
+}
+
+message Plg_1_242 {
+// Report Message
+  enum LuggagedoorstType {
+    LUGGAGEDOORST_CLOSE = 0;
+    LUGGAGEDOORST_OPEN = 1;
+  }
+  // This signal indicates luggage door status [] [0|1]
+  optional LuggagedoorstType luggagedoorst = 1;
+}
+
+message Ddcu_1_24a {
+// Report Message
+  enum Doorlockst_flType {
+    DOORLOCKST_FL_LOCK = 0;
+    DOORLOCKST_FL_UNLOCK = 1;
+    DOORLOCKST_FL_RESERVED = 2;
+    DOORLOCKST_FL_RESERVED_1 = 3;
+  }
+  enum Doorst_flType {
+    DOORST_FL_CLOSE = 0;
+    DOORST_FL_OPEN = 1;
+  }
+  enum Doorwindowst_flType {
+    DOORWINDOWST_FL_UNKNOWN = 0;
+    DOORWINDOWST_FL_TOP = 1;
+    DOORWINDOWST_FL_MIDDLE = 2;
+    DOORWINDOWST_FL_BOTTOM = 3;
+    DOORWINDOWST_FL_VENTILATION = 4;
+    DOORWINDOWST_FL_OTHER = 5;
+    DOORWINDOWST_FL_RESERVED = 6;
+    DOORWINDOWST_FL_RESERVED_1 = 7;
+  }
+  // This signal indicates the lock state of driver door. [] [0|3]
+  optional Doorlockst_flType doorlockst_fl = 1;
+  // This signal indicates the state of driver door. [] [0|1]
+  optional Doorst_flType doorst_fl = 2;
+  // This signal indicates the position of driver window. [] [0|7]
+  optional Doorwindowst_flType doorwindowst_fl = 3;
+}
+
+message Pdcu_1_24c {
+// Report Message
+  enum Doorlockst_frType {
+    DOORLOCKST_FR_LOCK = 0;
+    DOORLOCKST_FR_UNLOCK = 1;
+    DOORLOCKST_FR_RESERVED = 2;
+    DOORLOCKST_FR_RESERVED_1 = 3;
+  }
+  enum Doorst_frType {
+    DOORST_FR_CLOSE = 0;
+    DOORST_FR_OPEN = 1;
+  }
+  enum Doorwindowst_frType {
+    DOORWINDOWST_FR_UNKNOWN = 0;
+    DOORWINDOWST_FR_TOP = 1;
+    DOORWINDOWST_FR_MIDDLE = 2;
+    DOORWINDOWST_FR_BOTTOM = 3;
+    DOORWINDOWST_FR_VENTILATION = 4;
+    DOORWINDOWST_FR_OTHER = 5;
+    DOORWINDOWST_FR_RESERVED = 6;
+    DOORWINDOWST_FR_RESERVED_1 = 7;
+  }
+  // This signal indicates the lock state of passenger door. [] [0|3]
+  optional Doorlockst_frType doorlockst_fr = 1;
+  // This signal indicates the state of passenger door. [] [0|1]
+  optional Doorst_frType doorst_fr = 2;
+  // This signal indicates the position of passenger window. [] [0|7]
+  optional Doorwindowst_frType doorwindowst_fr = 3;
+}
+
+message Rldcu_1_24e {
+// Report Message
+  enum Doorlockst_rlType {
+    DOORLOCKST_RL_LOCK = 0;
+    DOORLOCKST_RL_UNLOCK = 1;
+    DOORLOCKST_RL_RESERVED = 2;
+    DOORLOCKST_RL_RESERVED_1 = 3;
+  }
+  enum Doorst_rlType {
+    DOORST_RL_CLOSE = 0;
+    DOORST_RL_OPEN = 1;
+  }
+  enum Doorwindowst_rlType {
+    DOORWINDOWST_RL_UNKNOWN = 0;
+    DOORWINDOWST_RL_TOP = 1;
+    DOORWINDOWST_RL_MIDDLE = 2;
+    DOORWINDOWST_RL_BOTTOM = 3;
+    DOORWINDOWST_RL_VENTILATION = 4;
+    DOORWINDOWST_RL_OTHER = 5;
+    DOORWINDOWST_RL_RESERVED = 6;
+    DOORWINDOWST_RL_RESERVED_1 = 7;
+  }
+  // This signal indicates the lock state of RL door. [] [0|3]
+  optional Doorlockst_rlType doorlockst_rl = 1;
+  // This signal indicates the state of RL door. [] [0|1]
+  optional Doorst_rlType doorst_rl = 2;
+  // This signal indicates the position of RL window. [] [0|7]
+  optional Doorwindowst_rlType doorwindowst_rl = 3;
+}
+
+message Rrdcu_1_24f {
+// Report Message
+  enum Doorlockst_rrType {
+    DOORLOCKST_RR_LOCK = 0;
+    DOORLOCKST_RR_UNLOCK = 1;
+    DOORLOCKST_RR_RESERVED = 2;
+    DOORLOCKST_RR_RESERVED_1 = 3;
+  }
+  enum Doorst_rrType {
+    DOORST_RR_CLOSE = 0;
+    DOORST_RR_OPEN = 1;
+  }
+  enum Doorwindowst_rrType {
+    DOORWINDOWST_RR_UNKNOWN = 0;
+    DOORWINDOWST_RR_TOP = 1;
+    DOORWINDOWST_RR_MIDDLE = 2;
+    DOORWINDOWST_RR_BOTTOM = 3;
+    DOORWINDOWST_RR_VENTILATION = 4;
+    DOORWINDOWST_RR_OTHER = 5;
+    DOORWINDOWST_RR_RESERVED = 6;
+    DOORWINDOWST_RR_RESERVED_1 = 7;
+  }
+  // This signal indicates the lock state of RR door. [] [0|3]
+  optional Doorlockst_rrType doorlockst_rr = 1;
+  // This signal indicates the state of RR door. [] [0|1]
+  optional Doorst_rrType doorst_rr = 2;
+  // This signal indicates the position of RR window. [] [0|7]
+  optional Doorwindowst_rrType doorwindowst_rr = 3;
+}
+
+message Cds3_1_3ac {
+// Report Message
+  enum Button2Type {
+    BUTTON2_NOT_PRESS = 0;
+    BUTTON2_PRESS = 1;
+  }
+  enum Button1Type {
+    BUTTON1_NOT_PRESS = 0;
+    BUTTON1_PRESS = 1;
+  }
+  // [] [0|1]
+  optional Button2Type button2 = 1;
+  // [] [0|1]
+  optional Button1Type button1 = 2;
+}
+
+message Svb2_1_7e {
+// Control Message
+  enum Svb2_gearrequestType {
+    SVB2_GEARREQUEST_NO_REQUEST = 0;
+    SVB2_GEARREQUEST_P = 1;
+    SVB2_GEARREQUEST_R = 2;
+    SVB2_GEARREQUEST_N = 3;
+    SVB2_GEARREQUEST_D = 4;
+    SVB2_GEARREQUEST_RESERVED = 5;
+    SVB2_GEARREQUEST_RESERVED_1 = 6;
+    SVB2_GEARREQUEST_INVALID_VALUE = 7;
+  }
+  enum Svb2_accelerationrequeststType {
+    SVB2_ACCELERATIONREQUESTST_NO_REQUEST = 0;
+    SVB2_ACCELERATIONREQUESTST_REQUEST = 1;
+  }
+  enum Svb2_takeoverrequestType {
+    SVB2_TAKEOVERREQUEST_NO_REQUEST = 0;
+    SVB2_TAKEOVERREQUEST_REQUEST = 1;
+  }
+  enum Svb2_steeringspeedrequestType {
+    SVB2_STEERINGSPEEDREQUEST_0 = 0;
+    SVB2_STEERINGSPEEDREQUEST_50 = 1;
+    SVB2_STEERINGSPEEDREQUEST_100 = 2;
+    SVB2_STEERINGSPEEDREQUEST_150 = 3;
+    SVB2_STEERINGSPEEDREQUEST_200 = 4;
+    SVB2_STEERINGSPEEDREQUEST_250 = 5;
+    SVB2_STEERINGSPEEDREQUEST_300 = 6;
+    SVB2_STEERINGSPEEDREQUEST_350 = 7;
+    SVB2_STEERINGSPEEDREQUEST_400 = 8;
+    SVB2_STEERINGSPEEDREQUEST_450 = 9;
+    SVB2_STEERINGSPEEDREQUEST_500 = 10;
+    SVB2_STEERINGSPEEDREQUEST_RESERVED = 11;
+    SVB2_STEERINGSPEEDREQUEST_RESERVED_1 = 12;
+    SVB2_STEERINGSPEEDREQUEST_RESERVED_2 = 13;
+    SVB2_STEERINGSPEEDREQUEST_RESERVED_3 = 14;
+    SVB2_STEERINGSPEEDREQUEST_RESERVED_4 = 15;
+  }
+  enum Svb2_standstillrequestType {
+    SVB2_STANDSTILLREQUEST_NO_REQUEST = 0;
+    SVB2_STANDSTILLREQUEST_REQUEST = 1;
+  }
+  enum Svb_controlflagType {
+    SVB_CONTROLFLAG_SVB1_CONTROL = 0;
+    SVB_CONTROLFLAG_SVB2_CONTROL = 1;
+    SVB_CONTROLFLAG_BOTH_SVB1_AND_SVB2_ARE_NOT = 2;
+    SVB_CONTROLFLAG_RESERVED = 3;
+  }
+  enum Svb2_steeringanglesignrequestType {
+    SVB2_STEERINGANGLESIGNREQUEST_NO_REQUEST = 0;
+    SVB2_STEERINGANGLESIGNREQUEST_LEFT_POSITIVE = 1;
+    SVB2_STEERINGANGLESIGNREQUEST_RIGHT_NEGATIVE = 2;
+    SVB2_STEERINGANGLESIGNREQUEST_RESERVED = 3;
+  }
+  enum Svb2_steeringrequeststType {
+    SVB2_STEERINGREQUESTST_NO_REQUEST = 0;
+    SVB2_STEERINGREQUESTST_REQUEST = 1;
+    SVB2_STEERINGREQUESTST_RESERVED = 2;
+    SVB2_STEERINGREQUESTST_RESERVED_1 = 3;
+  }
+  enum Svb2_failurestatusType {
+    SVB2_FAILURESTATUS_NO_ERROR = 0;
+    SVB2_FAILURESTATUS_DEGRADE = 1;
+    SVB2_FAILURESTATUS_ERROR = 2;
+    SVB2_FAILURESTATUS_RESERVED = 3;
+  }
+  enum Svb2_decelerationrequeststType {
+    SVB2_DECELERATIONREQUESTST_NO_REQUEST = 0;
+    SVB2_DECELERATIONREQUESTST_ACC_REQUEST = 1;
+    SVB2_DECELERATIONREQUESTST_AEB_REQUEST = 2;
+    SVB2_DECELERATIONREQUESTST_RESERVED = 3;
+  }
+  // [deg] [0|31]
+  optional double svb2_steeringanglerequestdecimal = 1;
+  // [] [0|7]
+  optional Svb2_gearrequestType svb2_gearrequest = 2;
+  // [] [0|1]
+  optional Svb2_accelerationrequeststType svb2_accelerationrequestst = 3;
+  // [] [0|1]
+  optional Svb2_takeoverrequestType svb2_takeoverrequest = 4;
+  // [m/s2] [0|6.2]
+  optional double svb2_accelerationrequest = 5;
+  // [deg/s] [0|15]
+  optional Svb2_steeringspeedrequestType svb2_steeringspeedrequest = 6;
+  // [] [0|1]
+  optional Svb2_standstillrequestType svb2_standstillrequest = 7;
+  // [] [0|3]
+  optional Svb_controlflagType svb_controlflag = 8;
+  // [] [0|3]
+  optional Svb2_steeringanglesignrequestType svb2_steeringanglesignrequest = 9;
+  // [deg] [0|1022]
+  optional int32 svb2_steeringanglerequest = 10;
+  // [] [0|3]
+  optional Svb2_steeringrequeststType svb2_steeringrequestst = 11;
+  // [] [0|3]
+  optional Svb2_failurestatusType svb2_failurestatus = 12;
+  // [] [0|3]
+  optional Svb2_decelerationrequeststType svb2_decelerationrequestst = 13;
+  // [m/s2] [-10|0]
+  optional double svb2_decelerationrequest = 14;
+  // [count] [0|15]
+  optional int32 livecounter_svb2_1 = 15;
+  // [check] [0|255]
+  optional int32 checksum_svb2_1 = 16;
+}
+
+message Svb2_2_7f {
+// Control Message
+  enum Svb2_hazardlightrequestType {
+    SVB2_HAZARDLIGHTREQUEST_NO_REQUEST = 0;
+    SVB2_HAZARDLIGHTREQUEST_OFF = 1;
+    SVB2_HAZARDLIGHTREQUEST_ON = 2;
+    SVB2_HAZARDLIGHTREQUEST_RESERVED = 3;
+  }
+  enum Svb2_rightturninglightrequestType {
+    SVB2_RIGHTTURNINGLIGHTREQUEST_NO_REQUEST = 0;
+    SVB2_RIGHTTURNINGLIGHTREQUEST_OFF = 1;
+    SVB2_RIGHTTURNINGLIGHTREQUEST_ON = 2;
+    SVB2_RIGHTTURNINGLIGHTREQUEST_RESERVED = 3;
+  }
+  enum Svb2_leftturninglightrequestType {
+    SVB2_LEFTTURNINGLIGHTREQUEST_NO_REQUEST = 0;
+    SVB2_LEFTTURNINGLIGHTREQUEST_OFF = 1;
+    SVB2_LEFTTURNINGLIGHTREQUEST_ON = 2;
+    SVB2_LEFTTURNINGLIGHTREQUEST_RESERVED = 3;
+  }
+  // [] [0|3]
+  optional Svb2_hazardlightrequestType svb2_hazardlightrequest = 1;
+  // [] [0|3]
+  optional Svb2_rightturninglightrequestType svb2_rightturninglightrequest = 2;
+  // [] [0|3]
+  optional Svb2_leftturninglightrequestType svb2_leftturninglightrequest = 3;
+  // [count] [0|15]
+  optional int32 livecounter_svb2_2 = 4;
+  // [check] [0|255]
+  optional int32 checksum_svb2_2 = 5;
+}
+
+message Hcu_2_2_92 {
+// Report Message
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_hcu_2_2 = 1;
+  // This signal indicates the actual acceleration pedal position [%] [0|102]
+  optional double hcu_accelerationpedalposition = 2;
+  // This signal indicates the calculated acceleration pedal position in cruise control mode. [%] [0|102]
+  optional double hcu_calcaccelerationpedalpositio = 3;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_hcu_2_2 = 4;
+}
+
+message Hcu_2_7_93 {
+// Report Message
+  enum Hcu_evreadyType {
+    HCU_EVREADY_NOT_USEABLE_ALWAYS_OFF = 0;
+    HCU_EVREADY_PREPARING = 1;
+    HCU_EVREADY_ENABLE_RUNNING_ALWAYS_ON = 2;
+    HCU_EVREADY_RESERVED = 3;
+  }
+  // [check] [0|255]
+  optional int32 checksum_hcu_2_7 = 1;
+  // EV system can run or not [] [0|3]
+  optional Hcu_evreadyType hcu_evready = 2;
+  // [count] [0|15]
+  optional int32 livecounter_hcu_2_7 = 3;
+}
+
+message Abs_1_c0 {
+// Report Message
+  enum Vehiclspeed_qType {
+    VEHICLSPEED_Q_NORMAL = 0;
+    VEHICLSPEED_Q_FAULTY = 1;
+  }
+  enum DrivingdirectionType {
+    DRIVINGDIRECTION_STOP = 0;
+    DRIVINGDIRECTION_FORWARD = 1;
+    DRIVINGDIRECTION_BACKWARD = 2;
+    DRIVINGDIRECTION_INVALID_VALUE = 3;
+  }
+  enum EpbswitchType {
+    EPBSWITCH_NO_PRESS = 0;
+    EPBSWITCH_UP = 1;
+    EPBSWITCH_DOWN = 2;
+    EPBSWITCH_RESERVED = 3;
+  }
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_abs_1 = 1;
+  // This signal is front left wheel speed which sent by ABS without filtering.  [km/h] [0|327.67]
+  optional double wheelspeed_fl = 2;
+  // This signal is front right wheel speed which sent by ABS without filtering. [km/h] [0|327.67]
+  optional double wheelspeed_fr = 3;
+  // The signal describes the raw vehicle speed calculated by ABS. The ABS calculates the vehicle speed based on the raw wheel speed signals from the wheel speed sensors. The vehicle speed output could be the average of the wheel speeds of the driven axle. [km/h] [0|327.67]
+  optional double vehiclspeed = 4;
+  // Qualifier for VehicleSpeed [] [0|1]
+  optional Vehiclspeed_qType vehiclspeed_q = 5;
+  // The signal indicates driving direction of the vehicle. [] [0|3]
+  optional DrivingdirectionType drivingdirection = 6;
+  // Indicates the EPB switch is pressed or not. [] [0|3]
+  optional EpbswitchType epbswitch = 7;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_abs_1 = 8;
+}
+
+message Abs_2_c2 {
+// Report Message
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_abs_2 = 1;
+  // This signal is rear left wheel speed which sent by ABS without filtering. [km/h] [0|327.67]
+  optional double wheelspeed_rl = 2;
+  // This signal is rear right wheel speed which sent by ABS without filtering. [km/h] [0|327.67]
+  optional double wheelspeed_rr = 3;
+  // The signal indicates the actual pressure in the master cylinder. [bar] [0|204.7]
+  optional double mastercylinderpressure = 4;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_abs_2 = 5;
+}
+
+message Eps_1_sas_1_d0 {
+// Report Message
+  enum SteeringwheelanglesignType {
+    STEERINGWHEELANGLESIGN_LEFT = 0;
+    STEERINGWHEELANGLESIGN_RIGHT = 1;
+  }
+  enum SteeringwheelspeedsignType {
+    STEERINGWHEELSPEEDSIGN_LEFT = 0;
+    STEERINGWHEELSPEEDSIGN_RIGHT = 1;
+  }
+  enum Sas_stType {
+    SAS_ST_SAS_ANGLE_AND_SPEED_CORRECT = 0;
+    SAS_ST_SAS_NOT_CALIBRATED = 1;
+    SAS_ST_INTERMITTENT_ERROR_DETECTED = 2;
+    SAS_ST_PERMANENT_ERROR_DETECTED = 3;
+  }
+  // The checksum is used to check whether the data from the CPU buffer are shifted without transmission errors to the CAN communication controller buffer and vice versa. [check] [0|255]
+  optional int32 checksum_eps_1_sas_1 = 1;
+  // This signal indicates the angle of steering wheel . [degree] [0|1433.55625]
+  optional double steeringwheelangle = 2;
+  // This signal shows the direction of steering wheel angle, it's used in pairs with SteeringWheelAngle. [] [0|1]
+  optional SteeringwheelanglesignType steeringwheelanglesign = 3;
+  // This signal indicates the teering wheel rotation speed. [degree/s] [0|1433.55625]
+  optional double steeringwheelspeed = 4;
+  // This signal shows the direction of steering wheel speed, it's used in pairs with SteeringWheelSpeed.  [] [0|1]
+  optional SteeringwheelspeedsignType steeringwheelspeedsign = 5;
+  // The signal indicates the status of SAS.  [] [0|3]
+  optional Sas_stType sas_st = 6;
+  // The Livecounter is used to check the signal consistency of the messages . If the signals are consecutive, the LiveCounter should also be sequential in the way [count] [0|15]
+  optional int32 livecounter_eps_1_sas_1 = 7;
+}
+
+message Ehs9 {
+  optional Svb1_1_109 svb1_1_109 = 1; // control message
+  optional Cds1_1_10a cds1_1_10a = 2; // report message
+  optional Cds2_1_10c cds2_1_10c = 3; // report message
+  optional Hcu_2_12_122 hcu_2_12_122 = 4; // report message
+  optional Esc_2_1_132 esc_2_1_132 = 5; // report message
+  optional Esc_3_1_134 esc_3_1_134 = 6; // report message
+  optional Esc_5_1_138 esc_5_1_138 = 7; // report message
+  optional Eps_1_1_150 eps_1_1_150 = 8; // report message
+  optional Svb1_2_1a0 svb1_2_1a0 = 9; // control message
+  optional Csc_1_1a6 csc_1_1a6 = 10; // report message
+  optional Acu_1_200 acu_1_200 = 11; // report message
+  optional Hcu_2_9_208 hcu_2_9_208 = 12; // report message
+  optional Bcm1_1_230 bcm1_1_230 = 13; // report message
+  optional Bcm1_3_234 bcm1_3_234 = 14; // report message
+  optional Plg_1_242 plg_1_242 = 15; // report message
+  optional Ddcu_1_24a ddcu_1_24a = 16; // report message
+  optional Pdcu_1_24c pdcu_1_24c = 17; // report message
+  optional Rldcu_1_24e rldcu_1_24e = 18; // report message
+  optional Rrdcu_1_24f rrdcu_1_24f = 19; // report message
+  optional Cds3_1_3ac cds3_1_3ac = 20; // report message
+  optional Svb2_1_7e svb2_1_7e = 21; // control message
+  optional Svb2_2_7f svb2_2_7f = 22; // control message
+  optional Hcu_2_2_92 hcu_2_2_92 = 23; // report message
+  optional Hcu_2_7_93 hcu_2_7_93 = 24; // report message
+  optional Abs_1_c0 abs_1_c0 = 25; // report message
+  optional Abs_2_c2 abs_2_c2 = 26; // report message
+  optional Eps_1_sas_1_d0 eps_1_sas_1_d0 = 27; // report message
+}

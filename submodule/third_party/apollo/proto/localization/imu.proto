@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package smartsim.localization;
+
+import "third_party/smartsim/proto/common/header.proto";
+import "third_party/smartsim/proto/localization/pose.proto";
+
+message CorrectedImu {
+  optional smartsim.common.Header header = 1;
+
+  // Inertial Measurement Unit(IMU)
+  optional smartsim.localization.Pose imu = 3;
+}

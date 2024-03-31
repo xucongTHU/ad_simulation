@@ -1,0 +1,232 @@
+syntax = "proto2";
+
+package smartsim.planning;
+
+import "third_party/smartsim/proto/geometry/geometry.proto";
+import "third_party/smartsim/proto/planning/planning_config.proto";
+import "third_party/smartsim/proto/routing/routing.proto";
+
+/*
+  This file defines the data types that represents the internal state of the
+  planning module.
+  It will not be refreshed in each planning cycle.
+*/
+
+message BareIntersectionStatus {
+  optional string current_pnc_junction_overlap_id = 1;
+  optional string done_pnc_junction_overlap_id = 2;
+  optional uint32 clear_counter = 3;
+  optional bool green_signal_clear = 4 [default = false];
+}
+
+message ChangeLaneStatus {
+  enum Status {
+    IN_CHANGE_LANE = 1;        // during change lane state
+    CHANGE_LANE_PREPARE = 2;    // change lane prepare
+    CHANGE_LANE_FINISHED = 3;  // change lane finished
+
+    IDLE = 4;
+    PREPARE = 5;
+    CHANGING = 6;
+    COMPLETE = 7;
+  }
+
+  message NudgeInLaneChange {
+    optional bool is_nudge = 1 [default = false];
+    optional double timestamp = 2;
+  }
+  optional Status status = 1 [default = IDLE];
+  // the id of the route segment that the vehicle is driving on
+  optional string path_id = 2;
+  // the time stamp when the state started.
+  optional double timestamp = 3;
+  // the starting position only after which lane-change can happen.
+  optional bool exist_lane_change_start_position = 4 [default = false];
+  optional smartsim.geometry.Point3D lane_change_start_position = 5;
+  // the last time stamp when the lane-change planning succeed.
+  optional double last_succeed_timestamp = 6;
+  // if the current path and speed planning on the lane-change
+  // reference-line succeed.
+  optional bool is_current_opt_succeed = 7 [default = false];
+  // denotes if the surrounding area is clear for ego vehicle to
+  // change lane at this moment.
+  optional bool is_clear_to_change_lane = 8 [default = false];
+  // is in pnc junction at this moment.
+  optional bool erase_change_lane_ref = 9 [default = false];
+  optional int32 prepare_change_lane_counter = 10 [default = 0];
+  optional double  change_lane_max_allow_length = 11 [default = 100];
+  // the timestamp when start stopping for the lane change
+  optional double stop_timestamp_sec = 12;  
+  optional int32  change_lane_not_clear_counter = 13 [default = 0];
+  optional int32 in_change_lane_counter = 14 [default = 0];
+  optional bool reget_gap_id_flag = 15 [default = true];
+  optional string mutable_first_id = 16;
+  optional string mutable_second_id = 17;
+
+  optional int32 confirm_counter = 18 [default = 0];
+  optional int32 cancel_counter = 19 [default = 0];
+  optional double gap_value = 20 [default = 0];
+  optional NudgeInLaneChange nudge_in_lane_change = 21;
+}
+
+message CreepDeciderStatus {
+  optional uint32 creep_clear_counter = 1;
+}
+
+message StopTime {
+  optional string obstacle_id = 1;
+  // the timestamp when start stopping for the crosswalk
+  optional double stop_timestamp_sec = 2;
+}
+
+message CrosswalkStatus {
+  optional string crosswalk_id = 1;
+  // the timestamp when start stopping for the crosswalk
+  repeated StopTime stop_time = 2;
+  repeated string finished_crosswalk = 3;
+}
+
+message DestinationStatus {
+  optional bool has_passed_destination = 1 [default = false];
+}
+
+message EmergencyStopStatus {
+  optional smartsim.geometry.PointENU stop_fence_point = 1;
+}
+
+message OpenSpaceStatus {
+  repeated string partitioned_trajectories_index_history = 1;
+  optional bool position_init = 2 [default = false];
+}
+
+message ParkAndGoStatus {
+  optional smartsim.geometry.PointENU adc_init_position = 1;
+  optional double adc_init_heading = 2;
+  optional bool in_check_stage = 3;
+  optional smartsim.geometry.PointENU adc_adjust_end_pose = 4;
+}
+
+message PathDeciderStatus {
+  enum LaneBorrowDirection {
+    LEFT_BORROW = 1;   // borrow left neighbor lane
+    RIGHT_BORROW = 2;  // borrow right neighbor lane
+  }
+  optional int32 front_static_obstacle_cycle_counter = 1 [default = 0];
+  optional int32 able_to_use_self_lane_counter = 2 [default = 0];
+  optional bool is_in_path_lane_borrow_scenario = 3 [default = false];
+  optional string front_static_obstacle_id = 4 [default = ""];
+  repeated LaneBorrowDirection decided_side_pass_direction = 5;
+  optional int32 front_narrow_obstacle_cycle_counter = 6 [default = 0];
+  optional string front_narrow_obstacle_id = 7 [default = ""];
+}
+
+message PullOverStatus {
+  enum PullOverType {
+    PULL_OVER = 1;            // pull-over upon destination arrival
+    EMERGENCY_PULL_OVER = 2;  // emergency pull-over
+  }
+  optional PullOverType pull_over_type = 1;
+  optional bool plan_pull_over_path = 2 [default = false];
+  optional smartsim.geometry.PointENU position = 3;
+  optional double theta = 4;
+  optional double length_front = 5;
+  optional double length_back = 6;
+  optional double width_left = 7;
+  optional double width_right = 8;
+}
+
+message ReroutingStatus {
+  optional double last_rerouting_time = 1;
+  optional bool need_rerouting = 2 [default = false];
+  optional smartsim.routing.RoutingRequest routing_request = 3;
+}
+
+message SpeedDeciderStatus {
+  repeated StopTime pedestrian_stop_time = 1;
+}
+
+message ScenarioStatus {
+  optional ScenarioConfig.ScenarioType scenario_type = 1;
+  optional ScenarioConfig.StageType stage_type = 2;
+}
+
+message StopSignStatus {
+  optional string current_stop_sign_overlap_id = 1;
+  optional string done_stop_sign_overlap_id = 2;
+  repeated string wait_for_obstacle_id = 3;
+}
+
+message TrafficLightStatus {
+  repeated string current_traffic_light_overlap_id = 1;
+  repeated string done_traffic_light_overlap_id = 2;
+}
+
+message YieldSignStatus {
+  repeated string current_yield_sign_overlap_id = 1;
+  repeated string done_yield_sign_overlap_id = 2;
+  repeated string wait_for_obstacle_id = 3;
+}
+
+message OnBoundaryNudgeStatus {
+  message OnBoundarySidePass {
+    required bytes obstacle_id = 1;
+    enum SidePassState {
+      NONE = 1;
+      ADJUST = 2;
+      CANSIDEPASS = 3;      
+    }
+    required SidePassState state = 2;
+    required double time = 3;
+    required bool is_special = 4;
+  }
+  repeated OnBoundarySidePass on_boundary_states = 3;
+}
+
+message LaneBorrowStatus {
+  optional uint32 clear_counter = 1;
+  optional bool is_borrow = 2;
+  optional int32 borrow_cycle_counter = 3;
+  optional int32 no_borrow_cycle_counter = 4;
+  optional bool is_prepare_borrow = 5;
+}
+
+message UturnStatus {
+  optional uint32 clear_counter = 1;
+  optional smartsim.geometry.PointENU uturn_fence_point = 2; 
+  optional string uturn_lane_id = 3;
+}
+
+message ReplanStatus {
+  optional bool is_replan = 1;
+}
+
+message LaneMergeStatus {
+  optional uint32 clear_counter = 1 [default = 0];
+  optional bool is_merge = 2 [default = false];
+  optional int32 merge_cycle_counter = 3 [default = 0];
+}
+
+// note: please keep this one as minimal as possible. do NOT pollute it.
+message PlanningStatus {
+  optional BareIntersectionStatus bare_intersection = 1;
+  optional ChangeLaneStatus change_lane = 2;
+  optional CreepDeciderStatus creep_decider = 3;
+  optional CrosswalkStatus crosswalk = 4;
+  optional DestinationStatus destination = 5;
+  optional EmergencyStopStatus emergency_stop = 6;
+  optional OpenSpaceStatus open_space = 7;
+  optional ParkAndGoStatus park_and_go = 8;
+  optional PathDeciderStatus path_decider = 9;
+  optional PullOverStatus pull_over = 10;
+  optional ReroutingStatus rerouting = 11;
+  optional ScenarioStatus scenario = 12;
+  optional SpeedDeciderStatus speed_decider = 13;
+  optional StopSignStatus stop_sign = 14;
+  optional TrafficLightStatus traffic_light = 15;
+  optional YieldSignStatus yield_sign = 16;
+  optional OnBoundaryNudgeStatus on_boundary_nudge_status = 17;
+  optional LaneBorrowStatus lane_borrow = 18;
+  optional UturnStatus uturn = 19;
+  optional ReplanStatus replan = 20;
+  optional LaneMergeStatus lane_merge = 21;
+}

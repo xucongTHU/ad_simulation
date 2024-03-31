@@ -7,6 +7,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR}/submodule)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/submodule)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/submodule/third_party)
 
 #map
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/submodule/map)
@@ -26,6 +27,7 @@ endif()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/submodule/interface/include)
 
 add_subdirectory(src)
+add_subdirectory(submodule/third_party)
 
 install(DIRECTORY  scripts/art/
         DESTINATION scripts

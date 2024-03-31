@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+import "third_party/smartsim/proto/geometry/geometry.proto";
+
+package smartsim.hdmap;
+
+// Polygon, not necessary convex.
+message Polygon {
+  repeated smartsim.geometry.PointENU point = 1;
+}
+
+// Straight line segment.
+message LineSegment {
+  repeated smartsim.geometry.PointENU point = 1;
+}
+
+// Generalization of a line.
+message CurveSegment {
+  oneof curve_type {
+    LineSegment line_segment = 1;
+  }
+  optional double s = 6;  // start position (s-coordinate)
+  optional smartsim.geometry.PointENU start_position = 7;
+  optional double heading = 8;  // start orientation
+  optional double length = 9;
+}
+
+// An object similar to a line but that need not be straight.
+message Curve {
+  repeated CurveSegment segment = 1;
+}

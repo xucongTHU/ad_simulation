@@ -1,0 +1,48 @@
+syntax = "proto2";
+
+package smartsim.prediction.vectornet;
+
+message TrajectoryLabels {
+  repeated Point point = 1;
+}
+
+message Point {
+  optional double x = 1;
+  optional double y = 2;
+  optional double timestamp = 3;
+}
+
+message Polylines {
+  repeated Polyline polyline = 1;
+}
+
+message Polyline {
+  repeated Vector vector = 1;
+}
+
+message Vector {
+  repeated float feature = 1;
+}
+
+message PolylineMask {
+  repeated float mask = 1;
+}
+
+message VectorMask {
+  repeated float mask = 1;
+}
+
+message VectornetFeature {
+  optional double timestamp = 1;
+  optional TrajectoryLabels trajectory_labels = 2;
+
+  optional Polylines polylines = 3;
+  optional PolylineMask polyline_mask = 4;
+  optional VectorMask vector_mask = 5;
+  
+  optional uint32 obstacle_num = 6; 
+  optional uint32 polylines_num = 7; 
+
+  optional double heading = 8;
+  optional Point center_point = 9;
+}

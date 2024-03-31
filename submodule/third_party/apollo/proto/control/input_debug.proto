@@ -1,0 +1,11 @@
+syntax = "proto2";
+package smartsim.control;
+
+import "third_party/smartsim/proto/common/header.proto";
+
+message InputDebug {
+  optional smartsim.common.Header localization_header = 1;
+  optional smartsim.common.Header canbus_header = 2;
+  optional smartsim.common.Header trajectory_header = 3;
+  optional smartsim.common.Header latest_replan_trajectory_header = 4;
+}

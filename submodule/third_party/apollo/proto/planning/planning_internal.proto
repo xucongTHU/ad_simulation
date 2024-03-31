@@ -1,0 +1,260 @@
+syntax = "proto2";
+
+package smartsim.planning_internal;
+
+import "third_party/smartsim/proto/geometry/geometry.proto";
+import "third_party/smartsim/proto/common/header.proto";
+import "third_party/smartsim/proto/drivers/chassis.proto";
+import "third_party/smartsim/proto/geometry/pnc_point.proto";
+import "third_party/smartsim/proto/localization/localization.proto";
+import "third_party/smartsim/proto/routing/routing.proto";
+import "third_party/smartsim/proto/perception/traffic_light_detection.proto";
+import "third_party/smartsim/proto/planning/sl_boundary.proto";
+import "third_party/smartsim/proto/planning/decision.proto";
+import "third_party/smartsim/proto/planning/planning_config.proto";
+
+message Debug {
+  optional PlanningData planning_data = 2;
+}
+
+message SpeedPlan {
+  optional string name = 1;
+  repeated smartsim.geometry.SpeedPoint speed_point = 2;
+}
+
+message StGraphBoundaryDebug {
+  enum StBoundaryType {
+    ST_BOUNDARY_TYPE_UNKNOWN = 1;
+    ST_BOUNDARY_TYPE_STOP = 2;
+    ST_BOUNDARY_TYPE_FOLLOW = 3;
+    ST_BOUNDARY_TYPE_YIELD = 4;
+    ST_BOUNDARY_TYPE_OVERTAKE = 5;
+    ST_BOUNDARY_TYPE_KEEP_CLEAR = 6;
+    ST_BOUNDARY_TYPE_DRIVABLE_REGION = 7;
+  }
+  optional string name = 1;
+  repeated smartsim.geometry.SpeedPoint point = 2;
+  optional StBoundaryType type = 3;
+}
+
+message SLFrameDebug {
+  optional string name = 1;
+  repeated double sampled_s = 2;
+  repeated double static_obstacle_lower_bound = 3;
+  repeated double dynamic_obstacle_lower_bound = 4;
+  repeated double static_obstacle_upper_bound = 5;
+  repeated double dynamic_obstacle_upper_bound = 6;
+  repeated double map_lower_bound = 7;
+  repeated double map_upper_bound = 8;
+  repeated smartsim.geometry.SLPoint sl_path = 9;
+  repeated double aggregated_boundary_s = 10;
+  repeated double aggregated_boundary_low = 11;
+  repeated double aggregated_boundary_high = 12;
+}
+
+message STGraphDebug {
+  message STGraphSpeedConstraint {
+    repeated double t = 1;
+    repeated double lower_bound = 2;
+    repeated double upper_bound = 3;
+  }
+  message STGraphKernelCuiseRef {
+    repeated double t = 1;
+    repeated double cruise_line_s = 2;
+  }
+  message STGraphKernelFollowRef {
+    repeated double t = 1;
+    repeated double follow_line_s = 2;
+  }
+
+  optional string name = 1;
+  repeated StGraphBoundaryDebug boundary = 2;
+  repeated smartsim.geometry.SpeedPoint speed_limit = 3;
+  repeated smartsim.geometry.SpeedPoint speed_profile = 4;
+  optional STGraphSpeedConstraint speed_constraint = 5;
+  optional STGraphKernelCuiseRef kernel_cruise_ref = 6;
+  optional STGraphKernelFollowRef kernel_follow_ref = 7;
+  repeated smartsim.geometry.SpeedPoint opt_speed_profile = 8;
+}
+
+message SignalLightDebug {
+  message SignalDebug {
+    optional string light_id = 1;
+    optional smartsim.perception.TrafficLight.Color color = 2;
+    optional double light_stop_s = 3;
+    optional double adc_stop_deceleration = 4;
+    optional bool is_stop_wall_created = 5;
+  }
+  optional double adc_speed = 1;
+  optional double adc_front_s = 2;
+  repeated SignalDebug signal = 3;
+}
+
+message DecisionTag {
+  optional string decider_tag = 1;
+  optional smartsim.planning.ObjectDecisionType decision = 2;
+}
+
+message ObstacleDebug {
+  optional string id = 1;
+  optional smartsim.planning.SLBoundary sl_boundary = 2;
+  repeated DecisionTag decision_tag = 3;
+  repeated double vertices_x_coords = 4;
+  repeated double vertices_y_coords = 5;
+}
+
+message ReferenceLineDebug {
+  optional string id = 1;
+  optional double length = 2;
+  optional double cost = 3;
+  optional bool is_change_lane_path = 4;
+  optional bool is_drivable = 5;
+  optional bool is_protected = 6;
+  optional bool is_offroad = 7;
+  optional double minimum_boundary = 8;
+  optional double average_kappa = 9 [deprecated = true];
+  optional double average_dkappa = 10 [deprecated = true];
+  optional double kappa_rms = 11;
+  optional double dkappa_rms = 12;
+  optional double kappa_max_abs = 13;
+  optional double dkappa_max_abs = 14;
+  optional double average_offset = 15;
+}
+
+message SampleLayerDebug {
+  repeated smartsim.geometry.SLPoint sl_point = 1;
+}
+
+message DpPolyGraphDebug {
+  repeated SampleLayerDebug sample_layer = 1;
+  repeated smartsim.geometry.SLPoint min_cost_point = 2;
+}
+
+message ScenarioDebug {
+  optional smartsim.planning.ScenarioConfig.ScenarioType scenario_type = 1;
+  optional smartsim.planning.ScenarioConfig.StageType stage_type = 2;
+  optional string msg = 3;
+}
+
+message Trajectories {
+  repeated smartsim.geometry.Trajectory trajectory = 1;
+}
+
+message OpenSpaceDebug {
+  optional smartsim.planning_internal.Trajectories trajectories = 1;
+  optional smartsim.geometry.VehicleMotion warm_start_trajectory = 2;
+  optional smartsim.geometry.VehicleMotion smoothed_trajectory = 3;
+  repeated double warm_start_dual_lambda = 4;
+  repeated double warm_start_dual_miu = 5;
+  repeated double optimized_dual_lambda = 6;
+  repeated double optimized_dual_miu = 7;
+  repeated double xy_boundary = 8;
+  repeated smartsim.planning_internal.ObstacleDebug obstacles = 9;
+  optional smartsim.geometry.TrajectoryPoint roi_shift_point = 10;
+  optional smartsim.geometry.TrajectoryPoint end_point = 11;
+  optional smartsim.planning_internal.Trajectories partitioned_trajectories = 12;
+  optional smartsim.planning_internal.Trajectories chosen_trajectory = 13;
+  optional bool is_fallback_trajectory = 14;
+  optional smartsim.planning_internal.Trajectories fallback_trajectory = 15;
+  optional smartsim.geometry.TrajectoryPoint trajectory_stitching_point = 16;
+  optional smartsim.geometry.TrajectoryPoint future_collision_point = 17;
+  optional double time_latency = 18 [default = 0.0];  // ms
+  optional smartsim.geometry.PointENU origin_point = 19;  // meter
+  optional double origin_heading_rad = 20;
+}
+
+message SmootherDebug {
+  enum SmootherType {
+    SMOOTHER_NONE = 1;
+    SMOOTHER_CLOSE_STOP = 2;
+  }
+  optional bool is_smoothed = 1;
+
+  optional SmootherType type = 2 [default = SMOOTHER_NONE];
+  optional string reason = 3;
+}
+
+message PullOverDebug {
+  optional smartsim.geometry.PointENU position = 1;
+  optional double theta = 2;
+  optional double length_front = 3;
+  optional double length_back = 4;
+  optional double width_left = 5;
+  optional double width_right = 6;
+}
+
+// next ID: 30
+message PlanningData {
+  // input
+  optional smartsim.localization.LocalizationEstimate adc_position = 7;
+  optional smartsim.drivers.Chassis chassis = 8;
+  optional smartsim.routing.RoutingResponse routing = 9;
+  optional smartsim.geometry.TrajectoryPoint init_point = 10;
+
+  repeated smartsim.geometry.Path path = 6;
+
+  repeated SpeedPlan speed_plan = 13;
+  repeated STGraphDebug st_graph = 14;
+  repeated SLFrameDebug sl_frame = 15;
+
+  optional smartsim.common.Header prediction_header = 16;
+  optional SignalLightDebug signal_light = 17;
+
+  repeated ObstacleDebug obstacle = 18;
+  repeated ReferenceLineDebug reference_line = 19;
+  optional DpPolyGraphDebug dp_poly_graph = 20;
+  optional LatticeStTraining lattice_st_image = 21;
+  optional AutoTuningTrainingData auto_tuning_training_data = 22;
+  optional double front_clear_distance = 23;
+  optional ScenarioDebug scenario = 24;
+  optional OpenSpaceDebug open_space = 25;
+  optional SmootherDebug smoother = 26;
+  optional PullOverDebug pull_over = 27;
+  optional HybridModelDebug hybrid_model = 28;
+}
+
+message LatticeStPixel {
+  optional int32 s = 1;
+  optional int32 t = 2;
+  optional uint32 r = 3;
+  optional uint32 g = 4;
+  optional uint32 b = 5;
+}
+
+message LatticeStTraining {
+  repeated LatticeStPixel pixel = 1;
+  optional double timestamp = 2;
+  optional string annotation = 3;
+  optional uint32 num_s_grids = 4;
+  optional uint32 num_t_grids = 5;
+  optional double s_resolution = 6;
+  optional double t_resolution = 7;
+}
+
+message CostComponents {
+  repeated double cost_component = 1;
+}
+
+message AutoTuningTrainingData {
+  optional CostComponents teacher_component = 1;
+  optional CostComponents student_component = 2;
+}
+
+message CloudReferenceLineRequest {
+  repeated smartsim.routing.LaneSegment lane_segment = 1;
+}
+
+message CloudReferenceLineRoutingRequest {
+  optional smartsim.routing.RoutingResponse routing = 1;
+}
+
+message CloudReferenceLineResponse {
+  repeated smartsim.geometry.Path segment = 1;
+}
+
+message HybridModelDebug {
+  optional bool using_learning_model_output = 1 [default = false];
+  optional double learning_model_output_usage_ratio = 2;
+  optional string learning_model_output_fail_reason = 3;
+  optional smartsim.geometry.Path evaluated_path_reference = 4;
+}

@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package smartsim.hdmap;
+
+// import "modules/common/proto/geometry.proto";
+import "third_party/smartsim/proto/hdmap/map_geometry.proto";
+import "third_party/smartsim/proto/hdmap/map_id.proto";
+
+//  A gate is the access for vehicles to an area, such as a building.
+message Gate {
+  optional Id id = 1;
+  optional Polygon horizontal = 2;
+  optional Polygon vertical = 3;
+  repeated Id overlap_id = 4;
+  
+  // stop line
+  //  repeated Curve stop_line = 5;
+}

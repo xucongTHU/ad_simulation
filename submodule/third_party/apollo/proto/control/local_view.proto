@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package smartsim.control;
+
+import "third_party/smartsim/proto/drivers/chassis.proto";
+import "third_party/smartsim/proto/common/header.proto";
+import "third_party/smartsim/proto/localization/localization.proto";
+import "third_party/smartsim/proto/planning/planning.proto";
+
+message LocalView {
+  optional smartsim.common.Header header = 1;
+  optional smartsim.drivers.Chassis chassis = 2;
+  optional smartsim.planning.ADCTrajectory trajectory = 3;
+  optional smartsim.localization.LocalizationEstimate localization = 4;
+}
