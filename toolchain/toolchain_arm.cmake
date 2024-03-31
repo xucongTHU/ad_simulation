@@ -1,0 +1,18 @@
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR arm64)
+
+set(CMAKE_SYSROOT "") # sysroot will be stripped from rpath, so empty but means for "/"
+
+set(CMAKE_C_COMPILER /usr/bin/gcc)
+set(CMAKE_CXX_COMPILER /usr/bin/g++)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+set(CUDA_TOOLKIT_ROOT_DIR /usr/local/cuda)
+set(CUDA_TOOLKIT_INCLUDE ${CUDA_TOOLKIT_ROOT_DIR}/include)
+set(CUDA_CUDART_LIBRARY ${CUDA_TOOLKIT_ROOT_DIR}/lib64/libcudart.so)
+set(CUDA_cublas_LIBRARY ${CUDA_TOOLKIT_ROOT_DIR}/lib64/libcublas.so)
+set(CUDA_curand_LIBRARY ${CUDA_TOOLKIT_ROOT_DIR}/lib64/libcurand.so)

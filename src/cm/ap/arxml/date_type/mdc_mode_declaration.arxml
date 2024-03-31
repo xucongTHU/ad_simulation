@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00048.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>HuaweiMDC</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>ModeDeclaration</SHORT-NAME>
+          <ELEMENTS>
+            <MODE-DECLARATION-GROUP>
+              <SHORT-NAME>EventAsyncSampleFunctionGroup</SHORT-NAME>
+              <CATEGORY>FunctionGroup</CATEGORY>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Off</INITIAL-MODE-REF>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Off</SHORT-NAME>
+                  <VALUE>1</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Restart</SHORT-NAME>
+                  <VALUE>3</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Running</SHORT-NAME>
+                  <VALUE>2</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Shutdown</SHORT-NAME>
+                  <VALUE>4</VALUE>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+              <MODE-TRANSITIONS>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>OffToRunning</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Running</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Off</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>RunningToOff</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Off</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Running</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>RunningToShutdown</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Shutdown</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Running</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>RunningToRestart</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Restart</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/EventAsyncSampleFunctionGroup/Running</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+              </MODE-TRANSITIONS>
+            </MODE-DECLARATION-GROUP>
+            <MODE-DECLARATION-GROUP>
+              <SHORT-NAME>ProcessState</SHORT-NAME>
+              <CATEGORY>Process</CATEGORY>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/ProcessState/Idle</INITIAL-MODE-REF>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Idle</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Running</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Terminated</SHORT-NAME>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+            </MODE-DECLARATION-GROUP>
+            <MODE-DECLARATION-GROUP>
+              <SHORT-NAME>Sample</SHORT-NAME>
+              <CATEGORY>FunctionGroup</CATEGORY>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Sample/Off</INITIAL-MODE-REF>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Off</SHORT-NAME>
+                  <VALUE>1</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Running</SHORT-NAME>
+                  <VALUE>2</VALUE>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+              <MODE-TRANSITIONS>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>OffToRunning</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Sample/Running</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Sample/Off</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>RunningToOff</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Sample/Off</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Sample/Running</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+              </MODE-TRANSITIONS>
+            </MODE-DECLARATION-GROUP>
+            <MODE-DECLARATION-GROUP UUID="1e734ae3-621f-4f04-966a-3c368fa87814">
+              <SHORT-NAME>SmSampleFG0</SHORT-NAME>
+              <CATEGORY>FunctionGroup</CATEGORY>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG0/Off</INITIAL-MODE-REF>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION UUID="fd583551-5728-44de-b99d-69e436ed7df1">
+                  <SHORT-NAME>Off</SHORT-NAME>
+                  <VALUE>1</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="7e18f83a-6db4-4a76-8ab4-786eff2117ee">
+                  <SHORT-NAME>Running</SHORT-NAME>
+                  <VALUE>2</VALUE>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+              <MODE-TRANSITIONS>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>OffToRunning</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG0/Running</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG0/Off</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>RunningToOff</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG0/Off</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG0/Running</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+              </MODE-TRANSITIONS>
+            </MODE-DECLARATION-GROUP>
+            <MODE-DECLARATION-GROUP UUID="1e734ae3-621f-4f04-966a-3c368fa87814">
+              <SHORT-NAME>SmSampleFG1</SHORT-NAME>
+              <CATEGORY>FunctionGroup</CATEGORY>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/Off</INITIAL-MODE-REF>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION UUID="fd583551-5728-44de-b99d-69e436ed7df1">
+                  <SHORT-NAME>Off</SHORT-NAME>
+                  <VALUE>1</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="7e18f83a-6db4-4a76-8ab4-786eff2117ee">
+                  <SHORT-NAME>StateA</SHORT-NAME>
+                  <VALUE>2</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="243199c9-739e-42c5-a3c0-f0c9e1ed25e9">
+                  <SHORT-NAME>StateB</SHORT-NAME>
+                  <VALUE>3</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="243199c9-739e-42c5-a3c0-f0c9e1ed25e9">
+                  <SHORT-NAME>StateC</SHORT-NAME>
+                  <VALUE>4</VALUE>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+              <MODE-TRANSITIONS>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>OffToStateA</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateA</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/Off</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StateAToStateB</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateB</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateA</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StateBToStateC</SHORT-NAME>
+                  <ACTIONS>
+                    <ACTION DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateC</ACTION>
+                    <ACTION DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/StateC</ACTION>
+                  </ACTIONS>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateC</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateB</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StateCToOff</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/Off</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateC</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+              </MODE-TRANSITIONS>
+            </MODE-DECLARATION-GROUP>
+            <MODE-DECLARATION-GROUP UUID="1e734ae3-621f-4f04-966a-3c368fa87814">
+              <SHORT-NAME>SmSampleFG2</SHORT-NAME>
+              <CATEGORY>FunctionGroup</CATEGORY>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/Off</INITIAL-MODE-REF>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION UUID="fd583551-5728-44de-b99d-69e436ed7df1">
+                  <SHORT-NAME>Off</SHORT-NAME>
+                  <VALUE>1</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="7e18f83a-6db4-4a76-8ab4-786eff2117ee">
+                  <SHORT-NAME>StateA</SHORT-NAME>
+                  <VALUE>2</VALUE>
+                  <DEPENDENCIES>
+                    <MODE-DEPENDENCY>
+                      <SHORT-NAME>Deps</SHORT-NAME>
+                      <STATES>
+                        <STATE DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateA</STATE>
+                      </STATES>
+                    </MODE-DEPENDENCY>
+                  </DEPENDENCIES>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="243199c9-739e-42c5-a3c0-f0c9e1ed25e9">
+                  <SHORT-NAME>StateB</SHORT-NAME>
+                  <VALUE>3</VALUE>
+                  <CONFLICTS>
+                    <MODE-CONFLICT>
+                      <SHORT-NAME>Conflicts</SHORT-NAME>
+                      <STATES>
+                        <STATE DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG1/StateC</STATE>
+                      </STATES>
+                    </MODE-CONFLICT>
+                  </CONFLICTS>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="243199c9-739e-42c5-a3c0-f0c9e1ed25e9">
+                  <SHORT-NAME>StateC</SHORT-NAME>
+                  <VALUE>4</VALUE>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+              <MODE-TRANSITIONS>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>OffToStateA</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/StateA</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/Off</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StateAToStateB</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/StateB</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/StateA</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StateBToStateC</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/StateC</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/StateB</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StateCToOff</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/Off</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/SmSampleFG2/StateC</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+              </MODE-TRANSITIONS>
+            </MODE-DECLARATION-GROUP>
+            <MODE-DECLARATION-GROUP>
+              <SHORT-NAME>Access</SHORT-NAME>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Access/Off</INITIAL-MODE-REF>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Off</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Running</SHORT-NAME>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+              <MODE-TRANSITIONS>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>OffToRunning</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Access/Running</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Access/Off</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>RunningToOff</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Access/Off</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/Access/Running</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+              </MODE-TRANSITIONS>
+            </MODE-DECLARATION-GROUP>
+            <MODE-DECLARATION-GROUP UUID="8cd5a6a1-f1a9-4726-ac4d-a04892b4c2bb">
+              <SHORT-NAME>MachineState</SHORT-NAME>
+              <CATEGORY>FunctionGroup</CATEGORY>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/PreStartup</INITIAL-MODE-REF>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Off</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Reset</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="">
+                  <SHORT-NAME>Restart</SHORT-NAME>
+                  <VALUE>2</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="7678bcd5-88ba-4d6a-8300-d4d622af9a7c">
+                  <SHORT-NAME>Shutdown</SHORT-NAME>
+                  <VALUE>1</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Standby</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="c3278453-592a-495d-9980-c8b04e5ca981">
+                  <SHORT-NAME>Startup</SHORT-NAME>
+                  <VALUE>0</VALUE>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Update</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>Verify</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION UUID="c3278453-592a-495d-9980-c8b04e5ca981">
+                  <SHORT-NAME>PreStartup</SHORT-NAME>
+                  <VALUE>0</VALUE>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+              <MODE-TRANSITIONS>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>OffToStartup</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Off</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StandbyToShutdown</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Shutdown</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Standby</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StandbyToStartup</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTask670f850a-76b3-4920-9e9b-ef6125df0c42</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">PostProcess</SD>
+                        <SD GID="Timeout">30000</SD>
+                        <SD GID="Category">POST_PROCESS</SD>
+                        <SD GID="Uuid">6b5777a2-5702-49fe-8937-76b7c58afeab</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Standby</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StartupToReset</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTask73e46f9e-64a6-4226-ab83-654127eb2d76</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">PreProcess</SD>
+                        <SD GID="Timeout">30000</SD>
+                        <SD GID="Category">PRE_PROCESS</SD>
+                        <SD GID="Uuid">be750c5d-a23e-42b2-b2f9-9386c3ea4b4f</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Reset</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StartupToRestart</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTask0fac2005-b237-449e-8f8c-e1fe91742d8e</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">PreProcess</SD>
+                        <SD GID="Timeout">30000</SD>
+                        <SD GID="Category">PRE_PROCESS</SD>
+                        <SD GID="Uuid">b5e07972-64c2-4913-8d60-df778fff8b99</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Restart</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StartupToShutdown</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Shutdown</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StartupToStandby</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTask3cd6caf1-80c3-451f-8095-9bb7d367cd28</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">PostProcess</SD>
+                        <SD GID="Timeout">30000</SD>
+                        <SD GID="Category">POST_PROCESS</SD>
+                        <SD GID="Uuid">82722a36-9d04-41a4-a44d-b18ef9f83152</SD>
+                      </SDG>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTaskb9d0decc-814d-4834-a381-35f58e620a28</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">ArbitrateProcess</SD>
+                        <SD GID="Timeout">30000</SD>
+                        <SD GID="Category">ARBITRATE_PROCESS</SD>
+                        <SD GID="Uuid">c856fdd2-9dae-4b25-98c5-7b1c440a0938</SD>
+                      </SDG>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTask49c509f1-27c9-4199-81f6-de09f483dca0</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">PreProcess</SD>
+                        <SD GID="Timeout">30000</SD>
+                        <SD GID="Category">PRE_PROCESS</SD>
+                        <SD GID="Uuid">b77b7b34-9b63-4e99-a78c-0560ceb32013</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Standby</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StartupToUpdate</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTask52a33135-acd3-4065-a000-c4d3efdd4dfc</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">PostProcess</SD>
+                        <SD GID="Timeout">3000</SD>
+                        <SD GID="Category">POST_PROCESS</SD>
+                        <SD GID="Uuid">fefb77b4-e0d8-4bbe-a456-e1e3baa6ddc6</SD>
+                      </SDG>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTask0c0e3c23-6d01-4b55-852c-b2f8cbc20ca2</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">ArbitrateProcess</SD>
+                        <SD GID="Timeout">1000</SD>
+                        <SD GID="Category">ARBITRATE_PROCESS</SD>
+                        <SD GID="Uuid">18ff168d-4920-40fd-852f-561a952d99b3</SD>
+                      </SDG>
+                      <SDG GID="ModeTransitionTask">
+                        <SD GID="_ExtensionKey">ModeTransitionTaskcd2e9ed3-6683-4eac-b065-63c636984891</SD>
+                        <SD GID="_NsURI">http://autosar.org/sm</SD>
+                        <SD GID="_Type">ModeTransitionTask</SD>
+                        <SD GID="ShortName">PreProcess</SD>
+                        <SD GID="Timeout">3000</SD>
+                        <SD GID="Category">PRE_PROCESS</SD>
+                        <SD GID="Uuid">7cab1397-0d0e-44c8-8190-84c887bbc44f</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <ACTIONS>
+                    <ACTION DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Update</ACTION>
+                  </ACTIONS>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Update</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StartupToVerify</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Verify</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>UpdateToReset</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Reset</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Update</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>UpdateToStartup</SHORT-NAME>
+                  <ACTIONS>
+                    <ACTION DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</ACTION>
+                  </ACTIONS>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Update</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>VerifyToRestart</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Restart</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Verify</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>VerifyToStartup</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Verify</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>OffToPreStartup</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/PreStartup</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Off</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>PreStartupToStartup</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/PreStartup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>StartupToPreStartup</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/PreStartup</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Startup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>PreStartupToUpdate</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Update</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/PreStartup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>UpdateToPreStartup</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/PreStartup</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Update</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+                <MODE-TRANSITION>
+                  <SHORT-NAME>PreStartupToReset</SHORT-NAME>
+                  <ENTERED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/Reset</ENTERED-MODE-REF>
+                  <EXITED-MODE-REF DEST="MODE-DECLARATION">/HuaweiMDC/ModeDeclaration/MachineState/PreStartup</EXITED-MODE-REF>
+                </MODE-TRANSITION>
+              </MODE-TRANSITIONS>
+            </MODE-DECLARATION-GROUP>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
